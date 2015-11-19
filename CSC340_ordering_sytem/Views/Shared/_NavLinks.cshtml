@@ -1,0 +1,45 @@
+﻿<ul>
+    <li>
+        <a href="../index.php">
+            <div>Home</div>
+        </a>
+    <li>
+        <a href="#">
+            <div>Menu</div>
+        </a>
+        <ul>
+            <li>
+@*             To turn this into a Razor link do:        *@
+@*             @Url.Action("pageFunction", "Controller") *@
+                <a href="../menuItem.php">Pizza</a>
+            </li>
+
+            <li>
+                <a href="../menuItem.php">Sides</a>
+            </li>
+            <li>
+                <a href="../menuItem.php">Desert</a>
+            </li>
+            <li>
+                <a href="../menuItem.php">Drinks</a>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <a href="#">
+            <div>My Account</div>
+        </a>
+        <ul>
+            <li>
+                <a href="#">Account Info</a>
+            </li>
+            <li>
+                <a href="../cart.php">Cart</a>
+            </li>
+            <li>
+                <a href="../checkout.php">Check Out</a>
+            </li>
+        </ul>
+    </li>
+    @Html.Partial("_ShoppingCart")
+</ul>

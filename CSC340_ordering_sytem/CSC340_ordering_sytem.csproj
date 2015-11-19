@@ -127,6 +127,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\desert_1.jpg" />
+    <Content Include="Assets\dishes_1.jpg" />
+    <Content Include="Assets\drinks_1.jpg" />
+    <Content Include="Assets\footer_logo.png" />
+    <Content Include="Assets\logo.png" />
+    <Content Include="Assets\logo_dark.png" />
+    <Content Include="Assets\logo_intro_dark.png" />
+    <Content Include="Assets\post_thumb.jpg" />
+    <Content Include="Assets\post_thumb2.jpg" />
+    <Content Include="Assets\post_thumb3.jpg" />
+    <Content Include="Assets\starter_1.jpg" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Restraunt\animate.css" />
@@ -155,6 +166,7 @@
     <Content Include="Content\Restraunt\fonts\font_icons\icomoon.eot" />
     <Content Include="Content\Restraunt\fonts\font_icons\icomoon.ttf" />
     <Content Include="Content\Restraunt\fonts\font_icons\icomoon.woff" />
+    <Content Include="Assets\index.php" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\html5shiv.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -185,6 +197,12 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\_HeaderPartial.cshtml" />
+    <Content Include="Views\Shared\_HeadPartial.cshtml" />
+    <Content Include="Views\Shared\_NavPartial.cshtml" />
+    <Content Include="Views\Shared\_NavLinks.cshtml" />
+    <Content Include="Views\Shared\_ShoppingCart.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

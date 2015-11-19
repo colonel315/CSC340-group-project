@@ -37,6 +37,19 @@ namespace CSC340_ordering_sytem
                       "~/Content/Restraunt/pizza.css",
                       "~/Content/site.css"));
 
+            bundles.Add(new StyleBundle("~/Content/fonts").Include(
+                      "~/Content/Restraunt/fonts/font_icons/fontawesome-webfont.eot",
+                      "~/Content/Restraunt/fonts/font_icons/fontawesome-webfont.svg",
+                      "~/Content/Restraunt/fonts/font_icons/fontawesome-webfont.ttf",
+                      "~/Content/Restraunt/fonts/font_icons/fontawesome-webfont..woff",
+                      "~/Content/Restraunt/fonts/font_icons/fontawesome-webfont.woff2",
+                      "~/Content/Restraunt/fonts/font_icons/FontAwesome.otf",
+                      "~/Content/Restraunt/fonts/font_icons/icomoon.eot",
+                      "~/Content/Restraunt/fonts/font_icons/icomoon.svg",
+                      "~/Content/Restraunt/fonts/font_icons/icomoon.ttf",
+                      "~/Content/Restraunt/fonts/font_icons/icomoon.woff"
+            ));
+
             bundles.Add(new ScriptBundle("~/bundles/Scripts").Include(
                       "~/Scripts/html5shiv.js",
                       "~/Scripts/plugins.js",
