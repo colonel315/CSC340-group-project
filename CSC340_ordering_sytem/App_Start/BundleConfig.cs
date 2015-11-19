@@ -25,7 +25,24 @@ namespace CSC340_ordering_sytem
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/Restraunt/owl.carousel.css",
+                      "~/Content/Restraunt/owl.theme.css",
+                      "~/Content/Restraunt/animate.css",
+                      "~/Content/Restraunt/jquery.datetimepicker.css",
+                      "~/Content/Restraunt/prettyPhoto.css",
+                      "~/Content/Restraunt/font-awesome.min.css",
+                      "~/Content/Restraunt/fonts/fonts.css",
+                      "~/Content/Restraunt/main.css",
+                      "~/Content/Restraunt/main-responsive.css",
+                      "~/Content/Restraunt/pizza.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/Scripts").Include(
+                      "~/Scripts/html5shiv.js",
+                      "~/Scripts/plugins.js",
+                      "~/Scripts/main.js",
+                      "~/Scripts/mbBgGallery_init.js"
+            ));
         }
     }
 }
