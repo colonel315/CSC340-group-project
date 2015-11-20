@@ -887,10 +887,10 @@ fieldset[disabled] .btn-black.active {
 	background-image: url(../img/banner/desert_banner.jpg);
 }
 .background14 {
-	background-image: url(../img/background/bg_1.jpg);
+	background-image: url(../Assets/bg_1.jpg);
 }
 .background15 {
-	background-image: url(../img/background/bg_2.jpg);
+	background-image: url(../Assets/bg_2.jpg);
 }
 .background16 {
 	background-image: url(../img/background/bg_3.jpg);
@@ -908,7 +908,7 @@ fieldset[disabled] .btn-black.active {
 	background-image: url(../img/background/styles/bg_10.jpg);
 }
 .background21 {
-	background-image: url(../img/background/styles/bg_12.jpg);
+	background-image: url(../Assets/bg_12.jpg);
 }
 .background22 {
 	background-image: url(../img/background/styles/bg_11.jpg);
@@ -1149,7 +1149,7 @@ fieldset[disabled] .btn-black.active {
     color: #ffffff;
 }
 #shop_cart .cart_items span.item_price {
-    magrin-top: 10px;
+    margin-top: 10px;
 }
 #shop_cart .cart_items span.item_price,
 #shop_cart .cart_items span.item_quantity {

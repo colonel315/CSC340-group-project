@@ -24,31 +24,19 @@ namespace CSC340_ordering_sytem
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
+                      "~/Assets/favicon.ico",
                       "~/Content/bootstrap.css",
-                      "~/Content/Restraunt/owl.carousel.css",
-                      "~/Content/Restraunt/owl.theme.css",
-                      "~/Content/Restraunt/animate.css",
-                      "~/Content/Restraunt/jquery.datetimepicker.css",
-                      "~/Content/Restraunt/prettyPhoto.css",
-                      "~/Content/Restraunt/font-awesome.min.css",
-                      "~/Content/Restraunt/fonts/fonts.css",
-                      "~/Content/Restraunt/main.css",
-                      "~/Content/Restraunt/main-responsive.css",
-                      "~/Content/Restraunt/pizza.css",
+                      "~/Content/stylesheets/owl.carousel.css",
+                      "~/Content/stylesheets/owl.theme.css",
+                      "~/Content/stylesheets/animate.css",
+                      "~/Content/stylesheets/jquery.datetimepicker.css",
+                      "~/Content/stylesheets/prettyPhoto.css",
+                      "~/Content/stylesheets/font-awesome.min.css",
+                      "~/Content/fonts/fonts.css",
+                      "~/Content/stylesheets/main.css",
+                      "~/Content/stylesheets/main-responsive.css",
+                      "~/Content/stylesheets/themes/pizza.css",
                       "~/Content/site.css"));
-
-            bundles.Add(new StyleBundle("~/Content/fonts").Include(
-                      "~/Content/Restraunt/fonts/font_icons/fontawesome-webfont.eot",
-                      "~/Content/Restraunt/fonts/font_icons/fontawesome-webfont.svg",
-                      "~/Content/Restraunt/fonts/font_icons/fontawesome-webfont.ttf",
-                      "~/Content/Restraunt/fonts/font_icons/fontawesome-webfont..woff",
-                      "~/Content/Restraunt/fonts/font_icons/fontawesome-webfont.woff2",
-                      "~/Content/Restraunt/fonts/font_icons/FontAwesome.otf",
-                      "~/Content/Restraunt/fonts/font_icons/icomoon.eot",
-                      "~/Content/Restraunt/fonts/font_icons/icomoon.svg",
-                      "~/Content/Restraunt/fonts/font_icons/icomoon.ttf",
-                      "~/Content/Restraunt/fonts/font_icons/icomoon.woff"
-            ));
 
             bundles.Add(new ScriptBundle("~/bundles/Scripts").Include(
                       "~/Scripts/html5shiv.js",

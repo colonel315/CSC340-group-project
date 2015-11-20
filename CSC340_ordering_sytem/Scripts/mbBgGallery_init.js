@@ -25,9 +25,9 @@ $(function ($) {
                 // else:
 
                  images:[
-                 "img/background/bg_1.jpg",
-                 "img/background/bg_2.jpg",
-                 "img/background/bg_12.jpg"
+                 "../Content/Assets/pizza_1.jpg",
+                 "../Content/Assets/pizza_2.jpg",
+                 "../Content/Assets/pizza_3.jpg"
                  ],    
 
                 onStart:function(){},
