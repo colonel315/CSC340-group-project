@@ -16,6 +16,9 @@ namespace CSC340_ordering_sytem.Models
         [MinLength(8, ErrorMessage = "Your password must contain at least 8 characters.")]
         public string Password { get; set; }
 
+        [Required]
+        public string Role { get; set; }
+
         public static User FindUserByEmailAndPassword(string email, string password, OrderingSystemDbContext db)
         {
             return db.Users.FirstOrDefault(x => x.Email.Equals(email) && x.Password.Equals(password));

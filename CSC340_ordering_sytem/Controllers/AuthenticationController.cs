@@ -30,9 +30,9 @@ namespace CSC340_ordering_sytem.Controllers
                 return View(viewModel);
 
             var hashedPassword = SHA256Hasher.Create(viewModel.Password);
-            var librarian = Models.User.FindUserByEmailAndPassword((string)viewModel.Email, hashedPassword, _db);
+            var user = Models.User.FindUserByEmailAndPassword((string)viewModel.Email, hashedPassword, _db);
 
-            if (librarian != null)
+            if (user != null)
             {
                 var identity = new ClaimsIdentity(
                     new[]
@@ -43,7 +43,7 @@ namespace CSC340_ordering_sytem.Controllers
                     ClaimTypes.Name, ClaimTypes.Role
                     );
 
-                identity.AddClaim(new Claim(ClaimTypes.Role, "librarian"));
+                identity.AddClaim(new Claim(ClaimTypes.Role, user.Role));
 
                 Authentication.SignIn(new AuthenticationProperties
                 {

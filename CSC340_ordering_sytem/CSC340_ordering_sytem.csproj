@@ -179,6 +179,10 @@
     <Compile Include="Migrations\201511210514101_Init.Designer.cs">
       <DependentUpon>201511210514101_Init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201511211841113_AddUserRole.cs" />
+    <Compile Include="Migrations\201511211841113_AddUserRole.Designer.cs">
+      <DependentUpon>201511211841113_AddUserRole.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Cart.cs" />
@@ -309,6 +313,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201511210514101_Init.resx">
       <DependentUpon>201511210514101_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511211841113_AddUserRole.resx">
+      <DependentUpon>201511211841113_AddUserRole.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
