@@ -285,8 +285,8 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Shared\_HeaderPartial.cshtml" />
     <Content Include="Views\Shared\_HeadPartial.cshtml" />
+    <Content Include="Views\Shared\_HeaderPartial.cshtml" />
     <Content Include="Views\Shared\_NavPartial.cshtml" />
     <Content Include="Views\Shared\_NavLinks.cshtml" />
     <Content Include="Views\Shared\_ShoppingCart.cshtml" />

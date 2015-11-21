@@ -1,8 +1,25 @@
-﻿@Html.Partial("_HeaderPartial")
+﻿<!DOCTYPE html>
+<html lang="en">
+    @Html.Partial("_HeadPartial")
 
-        @RenderBody()
+    <body>
+        <!-- Header -->
+        @Html.Partial("_HeaderPartial")
 
+        <!-- Document Content
+        ============================================= -->
+        <div id="content">
+            @RenderBody()
+        </div>
+        <!-- End content !-->
+
+        <!-- Footer -->
         @Html.Partial("_Footer")
+
+        <!-- Scripts -->
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @Scripts.Render("~/bundles/Scripts")
         @RenderSection("scripts", required: false)
     </body>
 </html>
