@@ -1,4 +1,5 @@
-﻿using System.Security.Claims;
+﻿using System.Collections.Generic;
+using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
 using CSC340_ordering_sytem.DAL;
@@ -43,7 +44,15 @@ namespace CSC340_ordering_sytem.Controllers
                     ClaimTypes.Name, ClaimTypes.Role
                     );
 
-                identity.AddClaim(new Claim(ClaimTypes.Role, user.Role));
+                //identity.AddClaim(new Claim(ClaimTypes.Role, user.Role));
+                
+                identity.AddClaims(new List<Claim>()
+                {
+                    new Claim(ClaimTypes.Role, user.Role),
+                    new Claim(ClaimTypes.NameIdentifier, "userId"),
+                    new Claim(ClaimTypes.Name, user.FirstName),
+                    new Claim(ClaimTypes.Surname, user.LastName)
+                });
 
                 Authentication.SignIn(new AuthenticationProperties
                 {

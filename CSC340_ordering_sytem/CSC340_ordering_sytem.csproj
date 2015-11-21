@@ -183,6 +183,10 @@
     <Compile Include="Migrations\201511211841113_AddUserRole.Designer.cs">
       <DependentUpon>201511211841113_AddUserRole.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201511211855215_AddFirstNameAndLastNameToUsers.cs" />
+    <Compile Include="Migrations\201511211855215_AddFirstNameAndLastNameToUsers.Designer.cs">
+      <DependentUpon>201511211855215_AddFirstNameAndLastNameToUsers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Cart.cs" />
@@ -316,6 +320,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201511211841113_AddUserRole.resx">
       <DependentUpon>201511211841113_AddUserRole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511211855215_AddFirstNameAndLastNameToUsers.resx">
+      <DependentUpon>201511211855215_AddFirstNameAndLastNameToUsers.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
