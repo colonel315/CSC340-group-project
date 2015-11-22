@@ -211,13 +211,15 @@ GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
 
-<<<<<<< HEAD
-CSC340_ordering_system/obj/Debug/
-Debug/
-/Debug
-=======
 CSC340_ordering_system/obj/
 .vs/
 Debug/
 /Debug
->>>>>>> dataModels
+
+CSC340_ordering_system/_bin_deployableAssemblies
+CSC340_ordering_system/Global.asax
+CSC340_ordering_system/Global.asax.cs
+CSC340_ordering_system/CSC340_ordering_system.csproj.user
+CSC340_ordering_system/CSC340_ordering_system.csproj
+
+Web.config
