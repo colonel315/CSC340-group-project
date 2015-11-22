@@ -216,5 +216,7 @@ Debug/
 /Debug
 
 CSC340_ordering_system/CSC340_ordering_system.csproj.user
+CSC340_ordering_sytem/bin/CSC340_ordering_system.dll
+CSC340_ordering_sytem/bin/CSC340_ordering_system.pdb
 
 Web.config
