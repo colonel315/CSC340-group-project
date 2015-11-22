@@ -211,12 +211,10 @@ GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
 
-CSC340_ordering_system/obj/
 .vs/
 Debug/
 /Debug
 
 CSC340_ordering_system/CSC340_ordering_system.csproj.user
-CSC340_ordering_system/CSC340_ordering_system.csproj
 
 Web.config
