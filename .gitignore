@@ -216,9 +216,6 @@ CSC340_ordering_system/obj/
 Debug/
 /Debug
 
-CSC340_ordering_system/_bin_deployableAssemblies
-CSC340_ordering_system/Global.asax
-CSC340_ordering_system/Global.asax.cs
 CSC340_ordering_system/CSC340_ordering_system.csproj.user
 CSC340_ordering_system/CSC340_ordering_system.csproj
 
