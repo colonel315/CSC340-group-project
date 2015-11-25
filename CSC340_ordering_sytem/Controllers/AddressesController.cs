@@ -4,6 +4,7 @@ using System.Net;
 using System.Web.Mvc;
 using CSC340_ordering_sytem.DAL;
 using CSC340_ordering_sytem.Models;
+using CSC340_ordering_sytem.ViewModels;
 using Microsoft.AspNet.Identity;
 using MvcFlashMessages;
 
@@ -41,7 +42,6 @@ namespace CSC340_ordering_sytem.Controllers
         // GET: Addresses/Create
         public ActionResult Create()
         {
-            ViewBag.CustomerId = User.Identity.GetUserId();
             return View();
         }
 
@@ -50,18 +50,24 @@ namespace CSC340_ordering_sytem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Street,State,Zip,CustomerId")] Address address)
+        public ActionResult Create([Bind(Include = "Id,Street,State,Zip,CustomerId")] AddressCreateViewModel addressViewModel)
         {
             if (ModelState.IsValid)
             {
-                _db.Addresses.Add(address);
+                _db.Addresses.Add(new Address()
+                {
+                    CustomerId = int.Parse(User.Identity.GetUserId()),
+                    Street = addressViewModel.Street,
+                    State = addressViewModel.State,
+                    Zip = addressViewModel.Zip
+                });
                 _db.SaveChanges();
                 this.Flash("success", "Address Added!");
                 return RedirectToRoute("Addresses", new {action = "Index"});
             }
 
             ViewBag.CustomerId = User.Identity.GetUserId();
-            return View(address);
+            return View(addressViewModel);
         }
 
         // GET: Addresses/Edit/5

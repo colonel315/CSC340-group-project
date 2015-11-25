@@ -240,6 +240,7 @@
     </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="Utilities\SHA256Hasher.cs" />
+    <Compile Include="ViewModels\AddressCreateViewModel.cs" />
     <Compile Include="ViewModels\AuthenticationLoginViewModel.cs" />
     <Compile Include="ViewModels\UserCreateViewModel.cs" />
     <Compile Include="ViewModels\UserEditViewModel.cs" />
