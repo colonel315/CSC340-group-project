@@ -1,0 +1,30 @@
+﻿@using CSC340_ordering_sytem.Models
+
+<li>
+    @Html.ActionLink("Menu", "Index", "Categories")
+    <ul>
+        @foreach (Category c in ViewBag.MenuCategories)
+        {
+            <li>
+                @Html.ActionLink(c.Name, "Details", new { controller = "Categories", Id = c.Id })
+            </li>
+        }
+    </ul>
+</li>
+
+<li>
+    <a href="#">
+        <div>My Account</div>
+    </a>
+    <ul>
+        @Html.ActionLink("Account Info", "CustomerAccountOverview", "Users")
+        <li>
+            <a href="#">Check Out</a>
+        </li>
+        <li>
+            @Html.ActionLink("Logout", "Logout", "Authentication")
+        </li>
+    </ul>
+</li>
+
+@Html.Partial("_ShoppingCart")

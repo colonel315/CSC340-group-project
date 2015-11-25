@@ -39,5 +39,7 @@ namespace CSC340_ordering_sytem.Models
         public DbSet<CartItem> CartItems { get; set; }
         public DbSet<Ingredient> Ingredients { get; set; }
         public DbSet<ItemIngredient> ItemIngredients { get; set; }
+
+        public System.Data.Entity.DbSet<CSC340_ordering_sytem.Models.Cart> Carts { get; set; }
     }
 }

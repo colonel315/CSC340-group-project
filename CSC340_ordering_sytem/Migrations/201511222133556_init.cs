@@ -3,7 +3,7 @@ namespace CSC340_ordering_sytem.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Init : DbMigration
+    public partial class init : DbMigration
     {
         public override void Up()
         {
@@ -28,23 +28,23 @@ namespace CSC340_ordering_sytem.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         FirstName = c.String(nullable: false, unicode: false),
                         LastName = c.String(nullable: false, unicode: false),
-                        Role = c.String(nullable: false, unicode: false, defaultValue: "Customer"),
+                        Role = c.String(nullable: false, unicode: false),
                         Email = c.String(nullable: false, unicode: false),
                         Password = c.String(nullable: false, unicode: false),
                         CartId = c.Int(),
                         Discriminator = c.String(nullable: false, maxLength: 128, storeType: "nvarchar"),
                     })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Carts", t => t.CartId, cascadeDelete: true)
-                .Index(t => t.CartId);
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.Carts",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
+                        Id = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => t.Id);
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Users", t => t.Id)
+                .Index(t => t.Id);
             
             CreateTable(
                 "dbo.CartItems",
@@ -150,7 +150,7 @@ namespace CSC340_ordering_sytem.Migrations
             DropForeignKey("dbo.Orders", "CreditCard_Id", "dbo.CreditCards");
             DropForeignKey("dbo.Orders", "CartId", "dbo.Carts");
             DropForeignKey("dbo.CreditCards", "CustomerId", "dbo.Users");
-            DropForeignKey("dbo.Users", "CartId", "dbo.Carts");
+            DropForeignKey("dbo.Carts", "Id", "dbo.Users");
             DropForeignKey("dbo.CartItems", "MenuItem_Id", "dbo.MenuItems");
             DropForeignKey("dbo.ItemIngredients", "MenuItemId", "dbo.MenuItems");
             DropForeignKey("dbo.ItemIngredients", "IngredientId", "dbo.Ingredients");
@@ -167,7 +167,7 @@ namespace CSC340_ordering_sytem.Migrations
             DropIndex("dbo.MenuItems", new[] { "Category_Id" });
             DropIndex("dbo.CartItems", new[] { "MenuItem_Id" });
             DropIndex("dbo.CartItems", new[] { "CartId" });
-            DropIndex("dbo.Users", new[] { "CartId" });
+            DropIndex("dbo.Carts", new[] { "Id" });
             DropIndex("dbo.Addresses", new[] { "CustomerId" });
             DropTable("dbo.Orders");
             DropTable("dbo.CreditCards");

@@ -29,5 +29,10 @@ namespace CSC340_ordering_sytem.Models
         {
             return db.Users.FirstOrDefault(x => x.Email.Equals(email) && x.Password.Equals(password));
         }
+
+        public string GetFullName()
+        {
+            return $"{FirstName} {LastName}";
+        }
     }
 }

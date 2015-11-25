@@ -10,7 +10,7 @@ using System.Web.Routing;
 
 namespace CSC340_ordering_sytem
 {
-    public class MvcApplication : System.Web.HttpApplication
+    public class MvcApplication : HttpApplication
     {
         protected void Application_Start()
         {

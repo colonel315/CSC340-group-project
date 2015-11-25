@@ -1,0 +1,51 @@
+﻿@using CSC340_ordering_sytem.Models
+@model CSC340_ordering_sytem.Models.Customer
+
+@{
+    ViewBag.Title = "My Account";
+}
+
+<div class="row">
+    <div class="col-sm-6">
+        <h2>Welcome <span class="text-success">@Model.GetFullName()</span></h2>
+        <p>@Model.Email</p>
+    </div>
+    <div class="col-sm-6 text-right margin-top-15">
+        @Html.RouteLink("Update Account", "CustomerEditAccount",null, new { @class = "btn btn-gold"})
+        <a hef="#" class="btn btn-black">Delivery Addresses</a>
+        <a hef="#" class="btn btn-black">Credit Cards</a>
+    </div>
+</div>
+
+
+<h2>Orders</h2>
+@{
+    if (Model.Orders.Count > 0)
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Order #</th>
+                    <th>Delivery Address</th>
+                    <th>Credit Card</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var order in Model.Orders)
+                {
+                    <tr>
+                        <td>@order.OrderNumber</td>
+                        <td>@order.ShippingAddress.Street</td>
+                        <td>***@order.CreditCard.CardSuffix</td>
+                        <td>@order.Status</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <h3 class="text-center">You haven't made an order yet.</h3>
+    }
+}

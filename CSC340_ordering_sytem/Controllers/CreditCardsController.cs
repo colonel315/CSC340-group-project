@@ -1,112 +1,120 @@
-﻿using System.Linq;
+﻿using System.Data.Entity;
+using System.Linq;
 using System.Net;
 using System.Web.Mvc;
+using CSC340_ordering_sytem.DAL;
 using CSC340_ordering_sytem.Models;
 
 namespace CSC340_ordering_sytem.Controllers
 {
-    public class CategoriesController : Controller
+    [Authorize(Roles = "Customer")]
+    public class CreditCardsController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private readonly OrderingSystemDbContext _db = new OrderingSystemDbContext();
 
-        // GET: Categories
+        // GET: CreditCards
         public ActionResult Index()
         {
-            return View(db.Categories.ToList());
+            var creditCards = _db.CreditCards.Include(c => c.Customer);
+            return View(creditCards.ToList());
         }
 
-        // GET: Categories/Details/5
+        // GET: CreditCards/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = db.Categories.Find(id);
-            if (category == null)
+            CreditCard creditCard = _db.CreditCards.Find(id);
+            if (creditCard == null)
             {
                 return HttpNotFound();
             }
-            return View(category);
+            return View(creditCard);
         }
 
-        // GET: Categories/Create
+        // GET: CreditCards/Create
         public ActionResult Create()
         {
+            ViewBag.CustomerId = new SelectList(_db.Users, "Id", "FirstName");
             return View();
         }
 
-        // POST: Categories/Create
+        // POST: CreditCards/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name")] Category category)
+        public ActionResult Create([Bind(Include = "Id,Token,CardSuffix,CustomerId")] CreditCard creditCard)
         {
             if (ModelState.IsValid)
             {
-                db.Categories.Add(category);
-                db.SaveChanges();
+                _db.CreditCards.Add(creditCard);
+                _db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(category);
+            ViewBag.CustomerId = new SelectList(_db.Users, "Id", "FirstName", creditCard.CustomerId);
+            return View(creditCard);
         }
 
-        // GET: Categories/Edit/5
+        // GET: CreditCards/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = db.Categories.Find(id);
-            if (category == null)
+            CreditCard creditCard = _db.CreditCards.Find(id);
+            if (creditCard == null)
             {
                 return HttpNotFound();
             }
-            return View(category);
+            ViewBag.CustomerId = new SelectList(_db.Users, "Id", "FirstName", creditCard.CustomerId);
+            return View(creditCard);
         }
 
-        // POST: Categories/Edit/5
+        // POST: CreditCards/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name")] Category category)
+        public ActionResult Edit([Bind(Include = "Id,Token,CardSuffix,CustomerId")] CreditCard creditCard)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(category).State = System.Data.Entity.EntityState.Modified;
-                db.SaveChanges();
+                _db.Entry(creditCard).State = EntityState.Modified;
+                _db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(category);
+            ViewBag.CustomerId = new SelectList(_db.Users, "Id", "FirstName", creditCard.CustomerId);
+            return View(creditCard);
         }
 
-        // GET: Categories/Delete/5
+        // GET: CreditCards/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = db.Categories.Find(id);
-            if (category == null)
+            CreditCard creditCard = _db.CreditCards.Find(id);
+            if (creditCard == null)
             {
                 return HttpNotFound();
             }
-            return View(category);
+            return View(creditCard);
         }
 
-        // POST: Categories/Delete/5
+        // POST: CreditCards/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Category category = db.Categories.Find(id);
-            db.Categories.Remove(category);
-            db.SaveChanges();
+            CreditCard creditCard = _db.CreditCards.Find(id);
+            _db.CreditCards.Remove(creditCard);
+            _db.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -114,7 +122,7 @@ namespace CSC340_ordering_sytem.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
         }

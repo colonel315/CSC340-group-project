@@ -1,45 +1,32 @@
-﻿<ul>
-    <li>
-        <a href="../index.php">
-            <div>Home</div>
-        </a>
-    <li>
-        <a href="#">
-            <div>Menu</div>
-        </a>
-        <ul>
-            <li>
-@*             To turn this into a Razor link do:        *@
-@*             @Url.Action("pageFunction", "Controller") *@
-                <a href="../menuItem.php">Pizza</a>
-            </li>
+﻿@using System.Web.UI.WebControls
+@using CSC340_ordering_sytem.Models
+@using CSC340_ordering_sytem.Models.Helpers
+@using Microsoft.AspNet.Identity
+@{
+    ViewBag.MenuCategories = CategoriesHelper.GetAllCategories();
+}
+<ul>
+    @{
+        <li>
+            @Html.ActionLink("Home", "Index", "Home")
+        </li>
 
+        if (Request.IsAuthenticated)
+        {
+            if (UsersHelper.IsUserAdmin(int.Parse(User.Identity.GetUserId())))
+            {
+                @Html.Partial("_AdminNav")
+            }
+            else
+            {
+                @Html.Partial("_CustomerNav")
+            }
+        }
+        else
+        {
             <li>
-                <a href="../menuItem.php">Sides</a>
+                @Html.ActionLink("Login", "Login", "Authentication")
             </li>
-            <li>
-                <a href="../menuItem.php">Desert</a>
-            </li>
-            <li>
-                <a href="../menuItem.php">Drinks</a>
-            </li>
-        </ul>
-    </li>
-    <li>
-        <a href="#">
-            <div>My Account</div>
-        </a>
-        <ul>
-            <li>
-                <a href="#">Account Info</a>
-            </li>
-            <li>
-                <a href="../cart.php">Cart</a>
-            </li>
-            <li>
-                <a href="../checkout.php">Check Out</a>
-            </li>
-        </ul>
-    </li>
-    @Html.Partial("_ShoppingCart")
+        }
+    }
 </ul>

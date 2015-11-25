@@ -1,9 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@using MvcFlashMessages
+<!DOCTYPE html>
 <html lang="en">
     @Html.Partial("_HeadPartial")
 
     <body>
-        <!-- Header -->
+    <!-- Header -->
         @Html.Partial("_HeaderPartial")
 
         <!-- Document Content
@@ -11,6 +12,7 @@
         <div id="content">
             <section class="padding-50">
                 <div class="container">
+                    @Html.RenderFlash()
                     @RenderBody()
                 </div>
             </section>
