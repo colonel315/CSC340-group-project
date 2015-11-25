@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+@Html.Partial("_HeadPartial")
+
+<body>
+    @Html.Partial("_NavPartial")
+
+
+    <div class="menu-bar dark mb60">
+        <!-- menu Filter
+                    ============================================= -->
+        <ul id="menu-fillter" class="clearfix text-center">
+            <li class="activeFilter"><a href="#" data-filter="*">Show All</a></li>
+            <li><a href="#" data-filter=".pf-daily-menu">dialy menu</a></li>
+            <li><a href="#" data-filter=".pf-starter">starter</a></li>
+            <li><a href="#" data-filter=".pf-dishes">duskani</a></li>
+            <li><a href="#" data-filter=".pf-desert">kids</a></li>
+            <li><a href="#" data-filter=".pf-drinks">Specials</a></li>
+        </ul>
+        <!-- #menu-filter end -->
+    </div>
+
+
+
+<!-- Document Content
+    ============================================= -->
+    <div id="content">
+        <section class="padding-50">
+            <div class="container">
+                @RenderBody()
+            </div>
+        </section>
+    </div>
+    <!-- End content !-->
+    <!-- Footer -->
+    @Html.Partial("_Footer")
+
+    <!-- Scripts -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    @Scripts.Render("~/bundles/Scripts")
+</body>
+</html>

@@ -1050,17 +1050,16 @@ jQuery(window).load(function(){
 ==*/
 
 // Create and Initialise the Map (required) our google map below
-
+if (typeof google != "undefined") {
     google.maps.event.addDomListener(window, 'load', init);
 
     function init() {
         // Basic options for a simple Google Map
         // For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
 
-     var mapOptions = {
+        var mapOptions = {
 
-     // How zoomed in you want the map to start at (always required)
-
+            // How zoomed in you want the map to start at (always required)
             zoom: 17,
             scrollwheel: false,
             // The latitude and longitude to center the map (always required)
@@ -1071,48 +1070,48 @@ jQuery(window).load(function(){
             // This is where you would paste any style found on [Snazzy Maps][1].
             // copy the Styles from Snazzy maps,  and paste that style info after the word "styles:"
 
-            styles: [{stylers:[{hue:'#000000'},{saturation:-100}]},{featureType:'water',elementType:'geometry',stylers:[{lightness:50},{visibility:'simplified'}]},{featureType:'road',elementType:'labels',stylers:[{visibility:'off'}]}]
+            styles: [{ stylers: [{ hue: '#000000' }, { saturation: -100 }] }, { featureType: 'water', elementType: 'geometry', stylers: [{ lightness: 50 }, { visibility: 'simplified' }] }, { featureType: 'road', elementType: 'labels', stylers: [{ visibility: 'off' }] }]
         };
-    
+
         var mapElement = document.getElementById('map');
-        
-          // Create the Google Map using out element and options defined above
-           var map = new google.maps.Map(mapElement, mapOptions);
-            // Define the image to use for the map marker (58 x 44 px)
-    
-                var image = 'img/map.png';
-    
+
+        // Create the Google Map using out element and options defined above
+        var map = new google.maps.Map(mapElement, mapOptions);
+        // Define the image to use for the map marker (58 x 44 px)
+
+        var image = 'img/map.png';
+
         // Define the Lattitude and Longitude for the map location
-    
-                var myLatLng = new google.maps.LatLng(45.088530, -64.367951);
-    
+
+        var myLatLng = new google.maps.LatLng(45.088530, -64.367951);
+
         // Define the map marker characteristics
-    
-                var mapMarker = new google.maps.Marker({
-                position: myLatLng,
-                map: map,
-                icon: image,
-                title:  'Frostbyte Interactive'
-    
-                });
 
-           // Following Lines are needed if you use the Info Window to display content when map marker is clicked
+        var mapMarker = new google.maps.Marker({
+            position: myLatLng,
+            map: map,
+            icon: image,
+            title: 'Frostbyte Interactive'
 
-       /*var infowindow = new google.maps.InfoWindow({
+        });
+
+        // Following Lines are needed if you use the Info Window to display content when map marker is clicked
+
+        /*var infowindow = new google.maps.InfoWindow({
                         content: contentString
                     });*/
 
         // Following line turns the marker, into a clickable button and when clicked, opens the info window
 
-            google.maps.event.addListener(mapMarker, 'click', function() {
-                infowindow.open(map, mapMarker);
-    });  
+        google.maps.event.addListener(mapMarker, 'click', function() {
+            infowindow.open(map, mapMarker);
+        });
 
     }
+}
 
-   
 
-   $(document).ready(function(){
+$(document).ready(function(){
          $(".bg").interactive_bg();
         });
         

@@ -1,0 +1,45 @@
+﻿@model CSC340_ordering_sytem.Models.Address
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Street, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.Street, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Street, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.State, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.State, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Zip, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.Zip, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Zip, "", new { @class = "text-danger" })
+    </div>
+
+    @Html.HiddenFor(model => model.CustomerId, new { value = @ViewBag.CustomerId })
+
+    <div class="row">
+        <div class="col-xs-6">
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+        <div class="col-xs-6">
+            <input type="submit" value="Save" class="btn btn-gold" />
+        </div>
+    </div>
+}

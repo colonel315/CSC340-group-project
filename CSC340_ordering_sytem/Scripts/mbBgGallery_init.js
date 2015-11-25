@@ -4,10 +4,9 @@
 
 
 $(function ($) {
-
     //BG SLIDESHOW WITH ZOOM EFFECT
     $.mbBgndGallery.buildGallery({
-                containment:"body",
+                containment:"#home-header",
                 timer:1000,
                 effTimer:15000,
                 controls:false, 

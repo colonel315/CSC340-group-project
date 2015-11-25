@@ -1,14 +1,31 @@
-﻿<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Majesty by creative-wp - Responsive HTML5 template">
-        <meta name="author" content="creative-wp">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Pizza Delivery</title>
-        @Styles.Render("~/Content/fonts")
-        @Styles.Render("~/Content/css")
-        @Scripts.Render("~/bundles/modernizr")
-    </head>
-    @Html.Partial("_HeadPartial")
+﻿<!-- Loader
+    ============================================= -->
+<div id="loader2">
+    <div class="loader-item">
+        <img src="../../Content/Assets/logo_intro_dark.png" alt="">
+        <div class="sk-spinner sk-spinner-wave">
+            <div class="sk-rect1"></div>
+            <div class="sk-rect2"></div>
+            <div class="sk-rect3"></div>
+            <div class="sk-rect4"></div>
+            <div class="sk-rect5"></div>
+        </div>
+    </div>
+</div>
+<!-- End Loader -->
+<!-- Document Wrapper
+    ============================================= -->
+<div id="wrapper">
+
+    @if (Request.Url.PathAndQuery == "/")
+    {
+        @Html.Partial("_FullBannerPartial");
+    }
+    else
+    {
+        @Html.Partial("_HalfBannerPartial");
+    }
+    
+    <!-- End Zooming Slider -->
+    @Html.Partial("_NavPartial")
+</div>
