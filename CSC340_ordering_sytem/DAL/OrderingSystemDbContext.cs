@@ -13,6 +13,7 @@ namespace CSC340_ordering_sytem.DAL
         public virtual DbSet<MenuItem> MenuItems { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Order> Order { get; set; }
+        public virtual DbSet<Cart> Carts { get; set; }
         public virtual DbSet<CartItem> CartItems { get; set; }
         public virtual DbSet<Ingredient> Ingredients { get; set; }
         public virtual DbSet<ItemIngredient> ItemIngredients { get; set; }
