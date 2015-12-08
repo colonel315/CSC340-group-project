@@ -1,0 +1,108 @@
+﻿@model IEnumerable<CSC340_ordering_sytem.Models.Customer>
+
+@{
+    ViewBag.Title = "Your Cart";
+}
+
+<div id="content">
+    <!-- Carts
+    ============================================= -->
+    <section class="carts text-center padding-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- Table carts -->
+                    <table class="table table-striped table-responsive table-cart">
+                        <thead>
+                        <tr>
+                            <th style="width: 40%">Product</th>
+                            <th style="width: 10%">Price</th>
+                            <th style="width: 20%">Quantity</th>
+                            <th style="width: 10%">Total</th>
+                            <th style="width: 20%">Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="dark-green">
+                                    <img src="../../Content/Assets/1.jpg" alt="">
+                                    Recipe Name
+                                </td>
+                                <td>25 $</td>
+                                <td>
+                                    <!-- input group minus & plus-->
+                                    <div class="input-group plus-minus">
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-default btn-number" disabled="disabled"
+                                                    data-type="minus" data-field="quant[1]">
+                                                <span class="fa fa-minus"></span>
+                                            </button>
+                                        </span>
+                                        <input type="number" name="quant[1]" class="form-control input-number" value="1"
+                                               min="1" max="10">
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-default btn-number" data-type="plus"
+                                                    data-field="quant[1]">
+                                                <span class="fa fa-plus"></span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                    <!-- End input group minus & plus -->
+                                </td>
+                                <td>
+                                    <span class="total">25 $</span>
+                                </td>
+                                <td>
+                                    <a class="btn btn-default" href="#">
+                                        Update
+                                    </a>
+                                    <a class="pull-right" href="#">
+                                        <i class="fa fa-times"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- Carts content -->
+            <div class="col-md-12 carts-content">
+                <div class="row">
+                    <!-- Left side -->
+                    <div class="col-md-5 left-side"></div>
+                    <!-- End Left side -->
+                    <!-- Right side -->
+                    <div class="col-md-5 col-md-offset-2 right-side">
+                        <!-- Carts total -->
+                        <div class="carts-total text-left margin-tb-60">
+                            <h3>Carts Total</h3>
+                            <table class="table table-bordered">
+                                <tbody>
+                                <tr>
+                                    <td>Cart Subtotal</td>
+                                    <td>150 $</td>
+                                </tr>
+                                <tr>
+                                    <td>Shipping and Handling</td>
+                                    <td>20 $</td>
+                                </tr>
+                                <tr>
+                                    <td>Order Total</td>
+                                    <td>170 $</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <button type="submit" class="btn  btn-black">PROCEED TO CHECKOUT</button>
+                        <!-- Carts total -->
+                    </div>
+                    <!--End Right side -->
+                </div>
+            </div>
+            <!--End Carts content -->
+        </div>
+    </section>
+</div>
