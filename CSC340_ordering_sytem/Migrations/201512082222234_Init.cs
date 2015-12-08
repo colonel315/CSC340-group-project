@@ -51,15 +51,15 @@ namespace CSC340_ordering_sytem.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
+                        MenuItemId = c.Int(nullable: false),
                         Quantity = c.Int(nullable: false),
                         CartId = c.Int(nullable: false),
-                        MenuItem_Id = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Carts", t => t.CartId, cascadeDelete: true)
-                .ForeignKey("dbo.MenuItems", t => t.MenuItem_Id, cascadeDelete: true)
-                .Index(t => t.CartId)
-                .Index(t => t.MenuItem_Id);
+                .ForeignKey("dbo.MenuItems", t => t.MenuItemId, cascadeDelete: true)
+                .Index(t => t.MenuItemId)
+                .Index(t => t.CartId);
             
             CreateTable(
                 "dbo.MenuItems",
@@ -152,7 +152,7 @@ namespace CSC340_ordering_sytem.Migrations
             DropForeignKey("dbo.Orders", "CreditCard_Id", "dbo.CreditCards");
             DropForeignKey("dbo.Orders", "CartId", "dbo.Carts");
             DropForeignKey("dbo.CreditCards", "CustomerId", "dbo.Users");
-            DropForeignKey("dbo.CartItems", "MenuItem_Id", "dbo.MenuItems");
+            DropForeignKey("dbo.CartItems", "MenuItemId", "dbo.MenuItems");
             DropForeignKey("dbo.ItemIngredients", "MenuItemId", "dbo.MenuItems");
             DropForeignKey("dbo.ItemIngredients", "IngredientId", "dbo.Ingredients");
             DropForeignKey("dbo.MenuItems", "CategoryId", "dbo.Categories");
@@ -166,8 +166,8 @@ namespace CSC340_ordering_sytem.Migrations
             DropIndex("dbo.ItemIngredients", new[] { "IngredientId" });
             DropIndex("dbo.ItemIngredients", new[] { "MenuItemId" });
             DropIndex("dbo.MenuItems", new[] { "CategoryId" });
-            DropIndex("dbo.CartItems", new[] { "MenuItem_Id" });
             DropIndex("dbo.CartItems", new[] { "CartId" });
+            DropIndex("dbo.CartItems", new[] { "MenuItemId" });
             DropIndex("dbo.Users", new[] { "CartId" });
             DropIndex("dbo.Addresses", new[] { "CustomerId" });
             DropTable("dbo.Orders");

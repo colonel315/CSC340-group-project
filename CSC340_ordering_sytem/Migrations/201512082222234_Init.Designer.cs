@@ -13,7 +13,7 @@ namespace CSC340_ordering_sytem.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201512081810046_Init"; }
+            get { return "201512082222234_Init"; }
         }
         
         string IMigrationMetadata.Source
