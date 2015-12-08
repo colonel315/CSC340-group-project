@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CSC340_ordering_sytem.Models
 {
@@ -9,9 +10,12 @@ namespace CSC340_ordering_sytem.Models
 
         [Required]
         public string Name { get; set; }
-        
+
         [Required]
-        public Category Category { get; set; }
+        public int CategoryId { get; set; }
+        
+        [ForeignKey("CategoryId")]
+        public virtual Category Category { get; set; }
 
         public ICollection<ItemIngredient> ItemIngredients { get; set; }
 

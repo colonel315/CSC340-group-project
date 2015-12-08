@@ -1,0 +1,29 @@
+Create cart when user attempts to add item.
+
+
+CONTROLLERS
+==================
+
+- Menu Item
+	- Create
+
+- Cart
+	- Delete (Are you sure you want to clear you cart?)
+
+User me = db.Users.Find(1);
+me.Cart.GetCartTotal();
+me.Cart.GetCartTax();
+me.Cart.GetCartSubtotal();
+
+- CartItem
+	- Index (List items in user's cart / edit items)
+	- Create[Post] (Redirect back to last menu location)
+	- Edit[Post] (Redirect back to index)
+	- Delete[Post] (Redirect back to index)
+
+- Order
+	- Index
+	- Create (Add delivery address & credit card)
+	- Details (Final Overview [Complete!])
+	- Edit (Update delivery address & credit card)
+	- Delete (Cancel Order)

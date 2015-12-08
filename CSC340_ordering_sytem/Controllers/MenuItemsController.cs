@@ -2,19 +2,19 @@
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
-using CSC340_ordering_sytem.DAL;
 using CSC340_ordering_sytem.Models;
 
 namespace CSC340_ordering_sytem.Controllers
 {
     public class MenuItemsController : Controller
     {
-        private readonly OrderingSystemDbContext _db = new OrderingSystemDbContext();
+        private readonly ApplicationDbContext _db = new ApplicationDbContext();
 
         // GET: MenuItems
         public ActionResult Index()
         {
-            return View(_db.MenuItems.ToList());
+            var menuItems = _db.MenuItems.Include(m => m.Category);
+            return View(menuItems.ToList());
         }
 
         // GET: MenuItems/Details/5
@@ -35,6 +35,7 @@ namespace CSC340_ordering_sytem.Controllers
         // GET: MenuItems/Create
         public ActionResult Create()
         {
+            ViewBag.CategoryId = new SelectList(_db.Categories, "Id", "Name");
             return View();
         }
 
@@ -43,7 +44,7 @@ namespace CSC340_ordering_sytem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Price")] MenuItem menuItem)
+        public ActionResult Create([Bind(Include = "Id,Name,CategoryId,Price")] MenuItem menuItem)
         {
             if (ModelState.IsValid)
             {
@@ -52,6 +53,7 @@ namespace CSC340_ordering_sytem.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.CategoryId = new SelectList(_db.Categories, "Id", "Name", menuItem.CategoryId);
             return View(menuItem);
         }
 
@@ -67,6 +69,7 @@ namespace CSC340_ordering_sytem.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.CategoryId = new SelectList(_db.Categories, "Id", "Name", menuItem.CategoryId);
             return View(menuItem);
         }
 
@@ -75,7 +78,7 @@ namespace CSC340_ordering_sytem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Price")] MenuItem menuItem)
+        public ActionResult Edit([Bind(Include = "Id,Name,CategoryId,Price")] MenuItem menuItem)
         {
             if (ModelState.IsValid)
             {
@@ -83,6 +86,7 @@ namespace CSC340_ordering_sytem.Controllers
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.CategoryId = new SelectList(_db.Categories, "Id", "Name", menuItem.CategoryId);
             return View(menuItem);
         }
 

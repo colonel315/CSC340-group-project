@@ -29,6 +29,16 @@ namespace CSC340_ordering_sytem
             routes.MapRoute("AdminDeleteCustomer", "admin/customers/delete/{id}",
                 new { controller = "Users", action = "Delete" });
 
+            /** Admin Manage Menu Items **/
+            routes.MapRoute("AdminMenuItems", "admin/menu/{action}/{id}",
+                new {controller = "MenuItems", action = "Index", id = UrlParameter.Optional}
+            );
+
+            /** Admin Orders **/
+            routes.MapRoute("AdminOrders", "admin/orders/{action}/{id}",
+                new { controller = "AdminOrders", action = "ListOrders", id = UrlParameter.Optional }
+            );
+
             /** Customer account overview page **/
             routes.MapRoute("CustomerAccountOverview", "account",
                 new { controller = "Users", action = "CustomerAccountOverview" });
@@ -42,11 +52,23 @@ namespace CSC340_ordering_sytem
             /** Credit card routes **/
             routes.MapRoute("CreditCards", "account/credit-cards/{action}/{id}", new { controller = "CreditCards", action = "Index", id = UrlParameter.Optional });
 
-            routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+            /** Customer Categories List **/
+            routes.MapRoute("Menu", "menu", new { controller = "FrontMenu", action = "ListCategories" });
+
+            /** List products in category **/
+            routes.MapRoute("MenuCategoryProducts", "menu/{slug}", new { controller = "FrontMenu", action = "CategoryItems" });
+
+            /** Customer Cart **/
+            routes.MapRoute("CustomerCart", "cart/{action}/{id}",
+                new {controller = "Carts", action = "ListCartItems", id = UrlParameter.Optional}
             );
+
+            /** Customer Order **/
+            routes.MapRoute("CustomerCheckout", "checkout/{action}",
+                new {controller = "FrontOrders", action = "Checkout"}
+            );
+
+            routes.MapRoute("Default", "{controller}/{action}/{id}", new { controller = "Home", action = "Index", id = UrlParameter.Optional });
         }
     }
 }
