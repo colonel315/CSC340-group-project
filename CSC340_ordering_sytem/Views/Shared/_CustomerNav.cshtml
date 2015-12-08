@@ -1,12 +1,12 @@
 ﻿@using CSC340_ordering_sytem.Models
 
 <li>
-    @Html.ActionLink("Menu", "Index", "Categories")
+    @Html.ActionLink("Menu", "ListCategories", "FrontMenu")
     <ul>
         @foreach (Category c in ViewBag.MenuCategories)
         {
             <li>
-                @Html.ActionLink(c.Name, "Details", new { controller = "Categories", Id = c.Id })
+                @Html.ActionLink(c.Name, "CategoryItems", new { controller = "FrontMenu", slug = c.Url })
             </li>
         }
     </ul>

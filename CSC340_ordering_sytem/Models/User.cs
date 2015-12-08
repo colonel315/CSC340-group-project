@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using CSC340_ordering_sytem.DAL;
 
@@ -24,6 +25,11 @@ namespace CSC340_ordering_sytem.Models
         [Required]
         [MinLength(8, ErrorMessage = "Your password must contain at least 8 characters.")]
         public string Password { get; set; }
+
+        public int? CartId { get; set; }
+
+        [ForeignKey("CartId")]
+        public Cart Cart { get; set; }
 
         public static User FindUserByEmailAndPassword(string email, string password, OrderingSystemDbContext db)
         {

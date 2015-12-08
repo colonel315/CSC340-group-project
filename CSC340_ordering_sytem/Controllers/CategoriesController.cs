@@ -1,33 +1,20 @@
-﻿using System.Linq;
+﻿using System.Data.Entity;
+using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using CSC340_ordering_sytem.Models;
+using MvcFlashMessages;
 
 namespace CSC340_ordering_sytem.Controllers
 {
     public class CategoriesController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private readonly ApplicationDbContext _db = new ApplicationDbContext();
 
         // GET: Categories
         public ActionResult Index()
         {
-            return View(db.Categories.ToList());
-        }
-
-        // GET: Categories/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Category category = db.Categories.Find(id);
-            if (category == null)
-            {
-                return HttpNotFound();
-            }
-            return View(category);
+            return View(_db.Categories.ToList());
         }
 
         // GET: Categories/Create
@@ -41,12 +28,13 @@ namespace CSC340_ordering_sytem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name")] Category category)
+        public ActionResult Create([Bind(Include = "Id,Name,Url")] Category category)
         {
             if (ModelState.IsValid)
             {
-                db.Categories.Add(category);
-                db.SaveChanges();
+                _db.Categories.Add(category);
+                _db.SaveChanges();
+                this.Flash("success", "Category Created!");
                 return RedirectToAction("Index");
             }
 
@@ -60,7 +48,7 @@ namespace CSC340_ordering_sytem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = db.Categories.Find(id);
+            Category category = _db.Categories.Find(id);
             if (category == null)
             {
                 return HttpNotFound();
@@ -73,12 +61,13 @@ namespace CSC340_ordering_sytem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name")] Category category)
+        public ActionResult Edit([Bind(Include = "Id,Name,Url")] Category category)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(category).State = System.Data.Entity.EntityState.Modified;
-                db.SaveChanges();
+                _db.Entry(category).State = EntityState.Modified;
+                _db.SaveChanges();
+                this.Flash("success", "Category Updated!");
                 return RedirectToAction("Index");
             }
             return View(category);
@@ -91,7 +80,7 @@ namespace CSC340_ordering_sytem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = db.Categories.Find(id);
+            Category category = _db.Categories.Find(id);
             if (category == null)
             {
                 return HttpNotFound();
@@ -104,9 +93,10 @@ namespace CSC340_ordering_sytem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Category category = db.Categories.Find(id);
-            db.Categories.Remove(category);
-            db.SaveChanges();
+            Category category = _db.Categories.Find(id);
+            _db.Categories.Remove(category);
+            _db.SaveChanges();
+            this.Flash("success","Category Deleted!");
             return RedirectToAction("Index");
         }
 
@@ -114,7 +104,7 @@ namespace CSC340_ordering_sytem.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
         }

@@ -1,0 +1,105 @@
+﻿@model CSC340_ordering_sytem.Models.Category
+@{
+    ViewBag.Title = Model.Name;
+}
+
+
+<!-- Content
+    ============================================= -->
+<div id="content">
+
+
+    <!-- Menu Grid
+    ============================================= -->
+    <div class="menu_grid our-menu text-center padding-b-70">
+
+
+        @if (ViewBag.categories != null && ViewBag.categories.Count > 0)
+        {
+            <!-- Menu Bar -->
+            <div class="menu-bar dark">
+                <!-- menu Filter
+                ============================================= -->
+                <ul class="clearfix list-inline">
+                    @{
+                        var x = 0;
+
+                        foreach (var category in ViewBag.categories)
+                        {
+                            <li>
+                                @if (x != 0)
+                                {
+                                    <i class="fa fa-circle-thin fa-fw"></i>
+                                }
+
+                                <a href="@Url.RouteUrl("MenuCategoryProducts", new {url = category.Url})">
+                                    @category.Name
+                                </a>
+                            </li>
+                            {
+                                x = x + 1;
+                            }
+                        }
+                    }
+                </ul>
+                <!-- #menu-filter end -->
+            </div>
+            <!-- End menu bar -->
+        }
+
+        @if (Model.MenuItems.Any())
+        {
+            <!-- Menu Items
+            ============================================= -->
+            <div class="container mt60">
+                <!-- Menu Items Masonary Content -->
+                <div id="menu-items" class="masonry-content menu-type dark clearfix">
+                    @foreach (var item in Model.MenuItems)
+                    {
+                        <!-- Menu Item -->
+                        <article class="menu-item col-md-4 col-sm-6 col-xs-12">
+                            <!-- Overlay Content -->
+                            <div class="overlay_content overlay-menu">
+                                <!-- Overlay Item -->
+                                <div class="overlay_item">
+                                    <img src="./../Content/Assets/menu/desert/desert1.jpg" alt="">
+                                    <!-- Overlay -->
+                                    <div class="overlay">
+                                        <!-- Icons -->
+                                        <div class="icons">
+                                            <h3>@item.Name</h3>
+
+                                            <h3> $@item.Price</h3>
+                                            <!-- Buttons -->
+                                            <div class="button">
+                                                <a class="btn btn-gold" href="#">
+                                                    <i class="fa fa-shopping-cart fa-fw"></i>
+                                                    Add Item
+                                                </a>
+                                                <!-- End Buttons -->
+                                            </div>
+                                            <!-- End Icons -->
+                                        </div>
+                                        <!-- End Overlay -->
+                                    </div>
+                                    <!-- End Overlay Item -->
+                                </div>
+                                <!-- End Overlay Content -->
+                            </div>
+                        </article>
+                        <!-- End Menu Item -->
+                    }
+                </div>
+                <!-- End Menu Content -->
+            </div>
+            <!-- #menu end -->
+            <!-- End Menu Grid -->
+        }
+        else
+        {
+            <h3 class="text-center">Sorry, we don't have any items under this category</h3>
+        }
+
+    </div>
+</div>
+<!-- end of #content -->
