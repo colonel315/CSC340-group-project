@@ -3,6 +3,8 @@ using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using CSC340_ordering_sytem.Models;
+using CSC340_ordering_sytem.Utilities;
+using CSC340_ordering_sytem.ViewModels;
 
 namespace CSC340_ordering_sytem.Controllers
 {
@@ -11,32 +13,24 @@ namespace CSC340_ordering_sytem.Controllers
         private readonly ApplicationDbContext _db = new ApplicationDbContext();
 
         // GET: MenuItems
-        public ActionResult Index()
+        public ActionResult Index(string slug)
         {
-            var menuItems = _db.MenuItems.Include(m => m.Category);
-            return View(menuItems.ToList());
-        }
+            var category = _db.Categories.FirstOrDefault(x => x.Url == slug);
 
-        // GET: MenuItems/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            MenuItem menuItem = _db.MenuItems.Find(id);
-            if (menuItem == null)
+            if (category == null)
             {
                 return HttpNotFound();
             }
-            return View(menuItem);
+
+            var menuItems = category.MenuItems; //_db.MenuItems.Include(m => m.Category);
+            return View(menuItems.ToList());
         }
 
         // GET: MenuItems/Create
         public ActionResult Create()
         {
             ViewBag.CategoryId = new SelectList(_db.Categories, "Id", "Name");
-            return View();
+            return View(new MenuItemSaveViewModel());
         }
 
         // POST: MenuItems/Create
@@ -44,11 +38,27 @@ namespace CSC340_ordering_sytem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,CategoryId,Price")] MenuItem menuItem)
+        public ActionResult Create([Bind(Include = "Id,Name,CategoryId,Price,Image")] MenuItemSaveViewModel menuItem)
         {
+            if (menuItem.Image == null || menuItem.Image.ContentLength == 0)
+            {
+                ModelState.AddModelError("Image", "Please select an image to upload.");
+            }
+            else if (!ImageUploader.IsValidImageType(menuItem.Image))
+            {
+                ModelState.AddModelError("Image", "The file you are attempting to upload is not an image.");
+            }
+
             if (ModelState.IsValid)
             {
-                _db.MenuItems.Add(menuItem);
+                var imageUrl = ImageUploader.Upload(menuItem.Image);
+                _db.MenuItems.Add(new MenuItem()
+                {
+                    Name = menuItem.Name,
+                    Price = menuItem.Price,
+                    CategoryId = menuItem.CategoryId,
+                    Image = imageUrl
+                });
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -64,13 +74,20 @@ namespace CSC340_ordering_sytem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            MenuItem menuItem = _db.MenuItems.Find(id);
+            MenuItem menuItem = _db.MenuItems.Where(x => x.Id == id).Include("Category").FirstOrDefault();
             if (menuItem == null)
             {
                 return HttpNotFound();
             }
             ViewBag.CategoryId = new SelectList(_db.Categories, "Id", "Name", menuItem.CategoryId);
-            return View(menuItem);
+            return View(new MenuItemSaveViewModel()
+            {
+                Name = menuItem.Name,
+                Price = menuItem.Price,
+                CategoryId = menuItem.CategoryId,
+                Category = menuItem.Category,
+                CurrentImageUrl = menuItem.Image
+            });
         }
 
         // POST: MenuItems/Edit/5
@@ -78,12 +95,29 @@ namespace CSC340_ordering_sytem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,CategoryId,Price")] MenuItem menuItem)
+        public ActionResult Edit([Bind(Include = "Id,Name,CategoryId,Price, Image")] MenuItemSaveViewModel menuItem)
         {
             if (ModelState.IsValid)
             {
-                _db.Entry(menuItem).State = EntityState.Modified;
+                var item = _db.MenuItems.Find(menuItem.Id);
+
+                if (item == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+
+                item.Name = menuItem.Name;
+                item.Price = menuItem.Price;
+                item.CategoryId = menuItem.CategoryId;
+
+                if (menuItem.Image != null && menuItem.Image.ContentLength > 0)
+                {
+                    item.Image = ImageUploader.Upload(menuItem.Image);
+                }
+
+                _db.Entry(item).State = EntityState.Modified;
                 _db.SaveChanges();
+                
                 return RedirectToAction("Index");
             }
             ViewBag.CategoryId = new SelectList(_db.Categories, "Id", "Name", menuItem.CategoryId);
@@ -97,7 +131,7 @@ namespace CSC340_ordering_sytem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            MenuItem menuItem = _db.MenuItems.Find(id);
+            MenuItem menuItem = _db.MenuItems.Where(x => x.Id == id).Include("Category").FirstOrDefault();
             if (menuItem == null)
             {
                 return HttpNotFound();

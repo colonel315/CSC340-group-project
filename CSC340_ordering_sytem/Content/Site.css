@@ -42,3 +42,7 @@
 .btn-custom:hover {
     color: #fff;
 }
+
+.max-image {
+    max-width: 100%;
+}

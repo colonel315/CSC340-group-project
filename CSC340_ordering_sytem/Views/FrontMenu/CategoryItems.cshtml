@@ -7,8 +7,6 @@
 <!-- Content
     ============================================= -->
 <div id="content">
-
-
     <!-- Menu Grid
     ============================================= -->
     <div class="menu_grid our-menu text-center padding-b-70">
@@ -62,7 +60,14 @@
                             <div class="overlay_content overlay-menu">
                                 <!-- Overlay Item -->
                                 <div class="overlay_item">
-                                    <img src="./../Content/Assets/menu/desert/desert1.jpg" alt="">
+                                    @if (!string.IsNullOrEmpty(item.Image))
+                                    {
+                                        <img src="@Url.Content(item.Image)"/>
+                                    }
+                                    else
+                                    {
+                                        <img src="./../Content/Assets/menu/desert/desert1.jpg" alt="">
+                                    }
                                     <!-- Overlay -->
                                     <div class="overlay">
                                         <!-- Icons -->
@@ -101,5 +106,10 @@
         }
 
     </div>
+
+    <div class="text-center margin-top-25">
+        @Html.RouteLink("Back to Menu", "Menu", null, new { @class = "btn btn-gold" })
+    </div>
+
 </div>
 <!-- end of #content -->

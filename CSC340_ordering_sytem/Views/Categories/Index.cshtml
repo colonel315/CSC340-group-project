@@ -36,7 +36,8 @@
                 @Html.DisplayFor(modelItem => item.Url)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Edit", "Edit", new {id = item.Id}) |
+                @Html.RouteLink("View Items", "AdminMenuCategoryItems", new { slug = item.Url }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.Id })
             </td>
         </tr>

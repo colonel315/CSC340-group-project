@@ -1,40 +1,61 @@
 ﻿@model IEnumerable<CSC340_ordering_sytem.Models.Category>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Menu";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Url)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Url)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
+@if (Model.Any())
+{
+    <!-- Menu Grid
+    ============================================= -->
+    <div class="menu_grid our-menu text-center padding-b-70">
+        <!-- Menu Items
+        ============================================= -->
+        <div class="container mt60">
+            <!-- Menu Items Masonary Content -->
+            <div id="menu-items" class="masonry-content menu-type dark clearfix">
+                @foreach (var item in Model)
+                {
+                    <!-- Menu Item -->
+                    <article class="menu-item col-md-4 col-sm-6 col-xs-12">
+                        <!-- Overlay Content -->
+                        <div class="overlay_content overlay-menu">
+                            <!-- Overlay Item -->
+                            <div class="overlay_item">
+                                <img src="./../Content/Assets/menu/desert/desert1.jpg" alt="">
+                                <!-- Overlay -->
+                                <div class="overlay">
+                                    <!-- Icons -->
+                                    <div class="icons">
+                                        <h3>@item.Name</h3>
+                                        <!-- Buttons -->
+                                        <div class="button">
+                                            <a class="btn btn-gold" href="@Url.RouteUrl("MenuCategoryProducts", new { slug = item.Url })">
+                                                <i class="fa fa-shopping-cart fa-fw"></i>
+                                                Go to Category
+                                            </a>
+                                            <!-- End Buttons -->
+                                        </div>
+                                        <!-- End Icons -->
+                                    </div>
+                                    <!-- End Overlay -->
+                                </div>
+                                <!-- End Overlay Item -->
+                            </div>
+                            <!-- End Overlay Content -->
+                        </div>
+                    </article>
+                    <!-- End Menu Item -->
+                }
+            </div>
+            <!-- End Menu Content -->
+        </div>
+        <!-- #menu end -->
+    </div>
+    <!-- End Menu Grid -->
 }
-
-</table>
+else
+{
+<h3 class="text-center">Sorry, our menu isn't available</h3>
+}

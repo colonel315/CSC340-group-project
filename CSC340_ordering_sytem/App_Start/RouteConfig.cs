@@ -29,8 +29,24 @@ namespace CSC340_ordering_sytem
             routes.MapRoute("AdminDeleteCustomer", "admin/customers/delete/{id}",
                 new { controller = "Users", action = "Delete" });
 
+            /** Admin List Menu Categories **/
+            routes.MapRoute("AdminMenu", "admin/menu",
+                new { controller = "Categories", action = "Index", id = UrlParameter.Optional }
+            );
+
+            /** Admin List Menu Categories **/
+            routes.MapRoute("AdminMenuCategories", "admin/menu/category/{action}/{id}",
+                new { controller = "Categories", action = "Index", id = UrlParameter.Optional }
+            );
+
+            /** Admin list items in category **/
+            routes.MapRoute("AdminMenuCategoryItems", "admin/menu/{slug}",
+                new { controller = "MenuItems", action = "Index" },
+                new { action = "Index" }
+            );
+
             /** Admin Manage Menu Items **/
-            routes.MapRoute("AdminMenuItems", "admin/menu/{action}/{id}",
+            routes.MapRoute("AdminMenuItems", "admin/menu/item/{action}/{id}",
                 new {controller = "MenuItems", action = "Index", id = UrlParameter.Optional}
             );
 

@@ -220,6 +220,10 @@
     <Compile Include="Migrations\201512082222234_Init.Designer.cs">
       <DependentUpon>201512082222234_Init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201512090048134_AddImageFieldToMenuItems.cs" />
+    <Compile Include="Migrations\201512090048134_AddImageFieldToMenuItems.Designer.cs">
+      <DependentUpon>201512090048134_AddImageFieldToMenuItems.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Cart.cs" />
@@ -245,10 +249,12 @@
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="Utilities\ImageUploader.cs" />
     <Compile Include="Utilities\SHA256Hasher.cs" />
     <Compile Include="ViewModels\AddressCreateViewModel.cs" />
     <Compile Include="ViewModels\AuthenticationLoginViewModel.cs" />
     <Compile Include="ViewModels\CreditCardCreateViewModel.cs" />
+    <Compile Include="ViewModels\MenuItemSaveViewModel.cs" />
     <Compile Include="ViewModels\UserCreateViewModel.cs" />
     <Compile Include="ViewModels\UserEditViewModel.cs" />
     <Compile Include="ViewSwitcher.ascx.cs">
@@ -365,7 +371,6 @@
     <Content Include="Views\AdminOrders\Index.cshtml" />
     <Content Include="Views\MenuItems\Create.cshtml" />
     <Content Include="Views\MenuItems\Delete.cshtml" />
-    <Content Include="Views\MenuItems\Details.cshtml" />
     <Content Include="Views\MenuItems\Edit.cshtml" />
     <Content Include="Views\MenuItems\Index.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
@@ -428,6 +433,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Uploads\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -440,6 +446,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201512082222234_Init.resx">
       <DependentUpon>201512082222234_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512090048134_AddImageFieldToMenuItems.resx">
+      <DependentUpon>201512090048134_AddImageFieldToMenuItems.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
