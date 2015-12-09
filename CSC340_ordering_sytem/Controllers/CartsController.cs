@@ -1,5 +1,10 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Core;
+using System.Data.Entity.Core.Objects;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
+using System.Net;
 using System.Web.Mvc;
 using CSC340_ordering_sytem.DAL;
 using CSC340_ordering_sytem.Models;
@@ -16,12 +21,64 @@ namespace CSC340_ordering_sytem.Controllers
         {
             var userId = int.Parse(User.Identity.GetUserId());
             
-            var customer = _db.Users.OfType<Customer>().Where(c => c.Id == userId).Include("Cart").Include("CartItem");
+            var customer = _db.Users.OfType<Customer>().Where(c => c.Id == userId)
+                .Include(c => c.Cart).Include(c => c.Cart.CartItems).First();
+
+            if (customer.Cart?.CartItems != null)
+            {
+                foreach (var item in customer.Cart.CartItems)
+                {
+                    _db.Entry(item).Reference(x => x.MenuItem).Load();
+                }
+            }
 
             return View(customer);
         }
 
+        // POST: AddItemToCart
+        [HttpPost]
+        public ActionResult AddItemToCart(int? Id)
+        {
+            var menuItem = _db.MenuItems.Where(x => x.Id == Id).Include("Category").FirstOrDefault();
 
+            if (menuItem != null)
+            {
+                var userId = int.Parse(User.Identity.GetUserId());
+                var customer = _db.Users.OfType<Customer>().Where(c => c.Id == userId)
+                .Include(c => c.Cart).Include(c => c.Cart.CartItems).First();
+
+                if(customer.Cart == null)
+                {
+                    var cart = new Cart();
+                    _db.Carts.Add(cart);
+                    _db.SaveChanges();
+
+                    cart = _db.Carts.Find(cart.Id);
+                    
+                    customer.CartId = cart.Id;
+                    customer.Cart = cart;
+                    _db.Entry(customer).State = EntityState.Modified;
+                    _db.SaveChanges();
+                }
+
+                
+
+                /*customer.Cart.CartItems.Add(new CartItem()
+                {
+                    MenuItemId = menuItem.Id,
+                    Quantity = 1
+                });*/
+
+//                _db.CartItems.AddRange(customer.Cart.CartItems);
+                //_db.Entry(customer.Cart).State = EntityState.Modified;
+                
+                
+
+                return RedirectToRoute("MenuCategoryProducts", new { slug = menuItem.Category.Url});
+            }
+
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        }
 
         // GET: Carts
 //        public ActionResult Index()

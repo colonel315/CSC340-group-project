@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CSC340_ordering_sytem.Models
 {
@@ -7,6 +8,7 @@ namespace CSC340_ordering_sytem.Models
         public int Id { get; set; }
 
         [Required]
+        public int MenuItemId { get; set; }
         public MenuItem MenuItem { get; set; }
 
         [Required]

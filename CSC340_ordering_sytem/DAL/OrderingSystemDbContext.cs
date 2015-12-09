@@ -32,6 +32,8 @@ namespace CSC340_ordering_sytem.DAL
             modelBuilder.Entity<Customer>().HasOptional(x => x.Cart).WithRequired();
             modelBuilder.Entity<MenuItem>().HasMany(x => x.ItemIngredients).WithRequired(x => x.MenuItem).HasForeignKey(x => x.MenuItemId);
 
+            //            modelBuilder.Entity<CartItem>().HasRequired(x => x.MenuItem).WithMany(x => x.);
+            modelBuilder.Entity<CartItem>().HasRequired(x => x.MenuItem).WithMany().HasForeignKey(x => x.MenuItemId);
             modelBuilder.Entity<Cart>().HasMany(x => x.CartItems).WithRequired().HasForeignKey(x => x.CartId);
             modelBuilder.Entity<Category>().HasMany(x => x.MenuItems).WithRequired().HasForeignKey(x => x.CategoryId);
         }
