@@ -28,7 +28,7 @@ namespace CSC340_ordering_sytem.DAL.Initializers
                     Password = SHA256Hasher.Create("test123"),
                     Role = "Admin"
                 },
-                new User()
+                new Customer()
                 {
                     FirstName = "Jane",
                     LastName = "Doe",

@@ -19,7 +19,7 @@
     <ul>
         @Html.ActionLink("Account Info", "CustomerAccountOverview", "Users")
         <li>
-            <a href="#">Check Out</a>
+            @Html.RouteLink("Checkout", new { controller = "Carts", action = "ShowCart" })
         </li>
         <li>
             @Html.ActionLink("Logout", "Logout", "Authentication")

@@ -216,13 +216,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201512091641597_init.cs" />
-    <Compile Include="Migrations\201512091641597_init.Designer.cs">
-      <DependentUpon>201512091641597_init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201512090048134_AddImageFieldToMenuItems.cs" />
-    <Compile Include="Migrations\201512090048134_AddImageFieldToMenuItems.Designer.cs">
-      <DependentUpon>201512090048134_AddImageFieldToMenuItems.cs</DependentUpon>
+    <Compile Include="Migrations\201512091928465_init.cs" />
+    <Compile Include="Migrations\201512091928465_init.Designer.cs">
+      <DependentUpon>201512091928465_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Address.cs" />
@@ -330,7 +326,7 @@
     <Content Include="Views\Shared\_HalfBannerPartial.cshtml" />
     <Content Include="Views\Shared\_AdministrativeLayout.cshtml" />
     <Content Include="Views\ServerResponses\_404.cshtml" />
-    <Content Include="Views\Users\Create.cshtml" />
+    <Content Include="Views\Users\Register.cshtml" />
     <Content Include="Views\Users\Delete.cshtml" />
     <Content Include="Views\Users\Details.cshtml" />
     <Content Include="Views\Users\Edit.cshtml" />
@@ -446,11 +442,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201512091641597_init.resx">
-      <DependentUpon>201512091641597_init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201512090048134_AddImageFieldToMenuItems.resx">
-      <DependentUpon>201512090048134_AddImageFieldToMenuItems.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201512091928465_init.resx">
+      <DependentUpon>201512091928465_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

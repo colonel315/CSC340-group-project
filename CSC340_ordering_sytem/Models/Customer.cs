@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CSC340_ordering_sytem.Models
 {
@@ -8,7 +9,7 @@ namespace CSC340_ordering_sytem.Models
         public ICollection<CreditCard> CreditCards { get; set; }
         public ICollection<Order> Orders { get; set; }
 
-        public int CartId { get; set; }
-        public Cart Cart { get; set; }
+        public int? CartId { get; set; }
+        public virtual Cart Cart { get; set; }
     }
 }

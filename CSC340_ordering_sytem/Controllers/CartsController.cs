@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using CSC340_ordering_sytem.DAL;
 using CSC340_ordering_sytem.Models;
 using Microsoft.AspNet.Identity;
+using MvcFlashMessages;
 
 namespace CSC340_ordering_sytem.Controllers
 {
@@ -37,7 +38,7 @@ namespace CSC340_ordering_sytem.Controllers
 
         // POST: AddItemToCart
         [HttpPost]
-        public ActionResult AddItemToCart(int? Id)
+        public ActionResult AddItemToCart(int Id)
         {
             var menuItem = _db.MenuItems.Where(x => x.Id == Id).Include("Category").FirstOrDefault();
 
@@ -49,31 +50,24 @@ namespace CSC340_ordering_sytem.Controllers
 
                 if(customer.Cart == null)
                 {
-                    var cart = new Cart();
-                    _db.Carts.Add(cart);
-                    _db.SaveChanges();
-
-                    cart = _db.Carts.Find(cart.Id);
-                    
-                    customer.CartId = cart.Id;
-                    customer.Cart = cart;
+                    customer.Cart = new Cart();
+                    _db.Entry(customer.Cart).State = EntityState.Added;
                     _db.Entry(customer).State = EntityState.Modified;
                     _db.SaveChanges();
                 }
 
-                
-
-                /*customer.Cart.CartItems.Add(new CartItem()
+                var cartItem = new CartItem()
                 {
-                    MenuItemId = menuItem.Id,
+                    MenuItemId = Id,
+                    CartId = (int)customer.Cart.Id,
                     Quantity = 1
-                });*/
+                };
 
-//                _db.CartItems.AddRange(customer.Cart.CartItems);
-                //_db.Entry(customer.Cart).State = EntityState.Modified;
-                
-                
-
+                _db.CartItems.Add(cartItem);
+                customer.CartId = customer.Cart.Id;
+                _db.Entry(customer).State = EntityState.Modified;
+                _db.SaveChanges();
+                this.Flash("success", "Item Added to Cart");
                 return RedirectToRoute("MenuCategoryProducts", new { slug = menuItem.Category.Url});
             }
 

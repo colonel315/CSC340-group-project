@@ -62,7 +62,7 @@ namespace CSC340_ordering_sytem.Controllers
 
 
         // GET: Users/Create
-        public ActionResult Create()
+        public ActionResult Register()
         {
             return View();
         }
@@ -72,10 +72,20 @@ namespace CSC340_ordering_sytem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Email,Password,Role,ConfirmPassword")] UserCreateViewModel tempUser)
+        public ActionResult Register([Bind(Include = "Id,FirstName,LastName,Email,Password,Role,ConfirmPassword")] UserCreateViewModel tempUser)
         {
             if (!ModelState.IsValid)
                 return View(tempUser);
+
+            var hashedPassword = SHA256Hasher.Create(tempUser.Password);
+            var existingCustomer = _db.Users.FirstOrDefault(x => x.Email == tempUser.Email 
+                    && x.Password.Equals(hashedPassword));
+
+            if (existingCustomer != null)
+            {
+                ModelState.AddModelError(string.Empty, "That email is already being used with another account.");
+                return View(tempUser);
+            }
 
             var role = (!string.IsNullOrEmpty(tempUser.Role)) ? tempUser.Role : "Customer";
 
@@ -97,7 +107,7 @@ namespace CSC340_ordering_sytem.Controllers
                     FirstName = tempUser.FirstName,
                     LastName = tempUser.LastName,
                     Email = tempUser.Email,
-                    Password = SHA256Hasher.Create(tempUser.Password),
+                    Password = hashedPassword,
                     Role = (!string.IsNullOrEmpty(tempUser.Role)) ? tempUser.Role : "Customer"
                 });
             }
@@ -105,12 +115,6 @@ namespace CSC340_ordering_sytem.Controllers
             _db.SaveChanges();
 
             this.Flash("success", "Registration complete!");
-
-            if (Request.IsAuthenticated)
-            {
-                return RedirectToAction("Index");
-            }
-
             return RedirectToAction("Login", "Authentication");
         }
 

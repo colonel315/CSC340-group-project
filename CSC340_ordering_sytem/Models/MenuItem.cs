@@ -22,8 +22,7 @@ namespace CSC340_ordering_sytem.Models
         [Required]
         [RegularExpression(@"^\$?(\d{1,3},?(\d{3},?)*\d{3}(.\d{0,3})?|\d{1,3}(.\d{2})?)$", ErrorMessage = "Invalid Price.")]
         public decimal Price { get; set; }
-
-        [Required]
+        
         public string Image { get; set; }
     }
 }

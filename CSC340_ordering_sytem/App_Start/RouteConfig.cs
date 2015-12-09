@@ -15,7 +15,7 @@ namespace CSC340_ordering_sytem
                 new { action = @"Login|Logout"});
 
             /** Registration Route **/
-            routes.MapRoute("Register", "account/register", new {controller = "Users", action = "Create"});
+            routes.MapRoute("Register", "account/register", new {controller = "Users", action = "Register"});
 
             /** Admin Customer listing page **/
             routes.MapRoute("AdminListCustomers", "admin/customers",
@@ -76,7 +76,8 @@ namespace CSC340_ordering_sytem
 
             /** Customer Cart **/
             routes.MapRoute("CustomerCart", "cart/{action}/{id}",
-                new {controller = "Carts", action = "ListCartItems", id = UrlParameter.Optional}
+                new {controller = "Carts", action = "ShowCart", id = UrlParameter.Optional},
+                new { action = "ShowCart" }
             );
 
             /** Customer Order **/
