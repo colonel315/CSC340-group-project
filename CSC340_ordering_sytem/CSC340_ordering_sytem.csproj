@@ -216,9 +216,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201512082222234_Init.cs" />
-    <Compile Include="Migrations\201512082222234_Init.Designer.cs">
-      <DependentUpon>201512082222234_Init.cs</DependentUpon>
+    <Compile Include="Migrations\201512091641597_init.cs" />
+    <Compile Include="Migrations\201512091641597_init.Designer.cs">
+      <DependentUpon>201512091641597_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201512090048134_AddImageFieldToMenuItems.cs" />
     <Compile Include="Migrations\201512090048134_AddImageFieldToMenuItems.Designer.cs">
@@ -266,6 +266,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Assets\1.jpg" />
     <Content Include="Content\Assets\bg_1.jpg" />
     <Content Include="Content\Assets\bg_12.jpg" />
     <Content Include="Content\Assets\bg_2.jpg" />
@@ -373,6 +374,7 @@
     <Content Include="Views\MenuItems\Delete.cshtml" />
     <Content Include="Views\MenuItems\Edit.cshtml" />
     <Content Include="Views\MenuItems\Index.cshtml" />
+    <Content Include="Views\Carts\ShowCart.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -444,8 +446,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201512082222234_Init.resx">
-      <DependentUpon>201512082222234_Init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201512091641597_init.resx">
+      <DependentUpon>201512091641597_init.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201512090048134_AddImageFieldToMenuItems.resx">
       <DependentUpon>201512090048134_AddImageFieldToMenuItems.cs</DependentUpon>

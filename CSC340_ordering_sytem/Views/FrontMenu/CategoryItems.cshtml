@@ -77,10 +77,12 @@
                                             <h3> $@item.Price</h3>
                                             <!-- Buttons -->
                                             <div class="button">
-                                                <a class="btn btn-gold" href="#">
+                                                @using (Html.BeginForm("AddItemToCart", "Carts"))
+                                                {
                                                     <i class="fa fa-shopping-cart fa-fw"></i>
-                                                    Add Item
-                                                </a>
+                                                    <input type="submit" class="btn btn-gold" />
+                                                    @Html.HiddenFor(m => m.Id)
+                                                }
                                                 <!-- End Buttons -->
                                             </div>
                                             <!-- End Icons -->

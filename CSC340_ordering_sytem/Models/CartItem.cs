@@ -9,8 +9,6 @@ namespace CSC340_ordering_sytem.Models
 
         [Required]
         public int MenuItemId { get; set; }
-
-        [ForeignKey("MenuItemId")]
         public MenuItem MenuItem { get; set; }
 
         [Required]

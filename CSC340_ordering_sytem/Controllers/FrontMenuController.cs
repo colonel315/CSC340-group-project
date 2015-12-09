@@ -7,7 +7,7 @@ using CSC340_ordering_sytem.Models;
 
 namespace CSC340_ordering_sytem.Controllers
 {
-    [Authorize(Roles = "Customer")]
+    //[Authorize(Roles = "Customer")]
     public class FrontMenuController : Controller
     {
         private readonly OrderingSystemDbContext _db = new OrderingSystemDbContext();
