@@ -40,6 +40,7 @@ namespace CSC340_ordering_sytem
 
             bundles.Add(new ScriptBundle("~/bundles/Scripts").Include(
                       "~/Scripts/html5shiv.js",
+                      "~/Scripts/script.js",
                       "~/Scripts/plugins.js",
                       "~/Scripts/main.js",
                       "~/Scripts/mbBgGallery_init.js"

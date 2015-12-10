@@ -20,8 +20,15 @@
         </tr>
         </thead>
         <tbody>
+            @{
+                var quantNum = 0;
+            }
         @foreach (var item in Model.Cart.CartItems)
         {
+            {
+                ViewBag.itemUpdateFormId = "update-item-" + item.Id;
+                ViewBag.itemQtyInputId = "item-qty-" + item.Id;
+            }
             <tr>
                 <td class="dark-green">
                     @if (!string.IsNullOrEmpty(item.MenuItem.Image))
@@ -32,42 +39,48 @@
                     {
                         <img src="../../Content/Assets/1.jpg" alt="">
                     }
-                    
+
                     @Html.DisplayFor(modelItem => item.MenuItem.Name)
                 </td>
                 <td>$@item.MenuItem.Price</td>
                 <td>
-                    <!-- input group minus & plus-->
-                    <div class="input-group plus-minus">
-                        <span class="input-group-btn">
-                                <button type="button" class="btn btn-default btn-number" disabled="disabled"
-                                        data-type="minus" data-field="quant[1]">
+                    @using (Html.BeginForm("UpdateItemInCart", "Carts", FormMethod.Post, new {id = ViewBag.itemUpdateFormId }))
+                    {
+                         <!-- input group minus & plus-->
+                        <div class="input-group plus-minus">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default btn-number"
+                                        data-action="decrement" data-target="#@ViewBag.itemQtyInputId">
                                     <span class="fa fa-minus"></span>
                                 </button>
                             </span>
-                        <input type="number" name="quant[1]" class="form-control input-number" value="1"
-                                min="1" max="10">
-                        <span class="input-group-btn">
-                            <button type="button" class="btn btn-default btn-number" data-type="plus"
-                                                                                    data-field="quant[1]">
-                                <span class="fa fa-plus"></span>
-                            </button>
-                        </span>
-                    </div>
-                    <!-- End input group minus & plus -->
+                            <input type="number" id="@ViewBag.itemQtyInputId" class="form-control input-number" value="1"
+                                   min="1" max="10" disabled="disabled">
+                            <input type="hidden" name="Quantity" data-value="#@ViewBag.itemQtyInputId"/>
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default btn-number" data-action="increment"
+                                        data-target="#@ViewBag.itemQtyInputId">
+                                    <span class="fa fa-plus"></span>
+                                </button>
+                            </span>
+                        </div>
+                        <!-- End input group minus & plus -->
+                        <input type="hidden" name="Id" value="@item.Id" />
+                    }
                 </td>
                 <td>
-                    <span class="total">$@(item.MenuItem.Price * item.Quantity)</span>
+                    <span class="total">$@(item.MenuItem.Price*item.Quantity)</span>
                 </td>
                 <td>
-                    <a class="btn btn-default" href="#">
-                        Update
-                    </a>
-                    <a class="pull-right" href="#">
+                    <input type="submit" class="btn btn-gold" data-action="update-item" data-target="#@ViewBag.itemUpdateFormId" value="Update"/>
+                    <a class="pull-right" href="@Url.Action("RemoveItemFromCart", "Carts")">
                         <i class="fa fa-times"></i>
                     </a>
                 </td>
             </tr>
+            {
+                ++quantNum;
+            }
         }
         </tbody>
     </table>

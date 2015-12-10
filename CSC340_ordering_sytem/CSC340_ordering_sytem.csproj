@@ -216,9 +216,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201512091928465_init.cs" />
-    <Compile Include="Migrations\201512091928465_init.Designer.cs">
-      <DependentUpon>201512091928465_init.cs</DependentUpon>
+    <Compile Include="Migrations\201512100353069_init.cs" />
+    <Compile Include="Migrations\201512100353069_init.Designer.cs">
+      <DependentUpon>201512100353069_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Address.cs" />
@@ -229,6 +229,7 @@
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\Helpers\CategoriesHelper.cs" />
+    <Compile Include="Models\Helpers\CustomerHelper.cs" />
     <Compile Include="Models\Helpers\UsersHelper.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Ingredient.cs" />
@@ -249,6 +250,7 @@
     <Compile Include="Utilities\SHA256Hasher.cs" />
     <Compile Include="ViewModels\AddressCreateViewModel.cs" />
     <Compile Include="ViewModels\AuthenticationLoginViewModel.cs" />
+    <Compile Include="ViewModels\CartItemUpdateViewModel.cs" />
     <Compile Include="ViewModels\CreditCardCreateViewModel.cs" />
     <Compile Include="ViewModels\MenuItemSaveViewModel.cs" />
     <Compile Include="ViewModels\UserCreateViewModel.cs" />
@@ -321,6 +323,7 @@
     <Content Include="Content\fonts\font_icons\icomoon.ttf" />
     <Content Include="Content\fonts\font_icons\icomoon.woff" />
     <Content Include="Content\stylesheets\.DS_Store" />
+    <Content Include="Scripts\script.js" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Views\Shared\_FullBannerPartial.cshtml" />
     <Content Include="Views\Shared\_HalfBannerPartial.cshtml" />
@@ -442,8 +445,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201512091928465_init.resx">
-      <DependentUpon>201512091928465_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201512100353069_init.resx">
+      <DependentUpon>201512100353069_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

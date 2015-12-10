@@ -80,8 +80,8 @@
                                                 @using (Html.BeginForm("AddItemToCart", "Carts"))
                                                 {
                                                     <i class="fa fa-shopping-cart fa-fw"></i>
-                                                    <input type="submit" class="btn btn-gold" />
-                                                    @Html.HiddenFor(m => m.Id)
+                                                    <input type="submit" class="btn btn-gold" value="Add Item"/>
+                                                    <input type="hidden" name="Id" id="Id" value="@item.Id"/>
                                                 }
                                                 <!-- End Buttons -->
                                             </div>
