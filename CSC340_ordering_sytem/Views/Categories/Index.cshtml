@@ -10,37 +10,42 @@
         <h2>@ViewBag.Title</h2>
     </div>
     <div class="col-xs-6 text-right">
-        @Html.ActionLink("Create New", "Create", "", new { @class = "btn btn-gold" })
+        @Html.ActionLink("Add Category", "Create", null, new { @class = "btn btn-gold" })
     </div>
 </div>
 
 
 <table class="table table-striped">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Url)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+    <thead>
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Url)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new {id = item.Id}) |
-                @Html.RouteLink("View Items", "AdminMenuCategoryItems", new { slug = item.Url }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Url)
+            </th>
+            <th></th>
+            <th></th>
         </tr>
-    }
-
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Url)
+                </td>
+                <td class="text-center">
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+                <td class="text-right">
+                    @Html.RouteLink("View Items", "AdminMenuCategoryItems", new { slug = item.Url }, new { @class = "btn btn-sm btn-custom btn-yellow" })
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>

@@ -1,46 +1,51 @@
 ﻿@model IEnumerable<CSC340_ordering_sytem.Models.Order>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "On-going Orders";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Cart.Id)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Customer.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Status)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cart.Id)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Customer.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.OrderNumber }) |
-            @Html.ActionLink("Details", "Details", new { id=item.OrderNumber }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.OrderNumber })
-        </td>
-    </tr>
+@if (Model.Any())
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Cart.Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Customer.FirstName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Status)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cart.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Customer.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.OrderNumber }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.OrderNumber }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.OrderNumber })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 }
-
-</table>
+else
+{
+    <h3 class="text-center">No orders have been submitted yet</h3>
+}

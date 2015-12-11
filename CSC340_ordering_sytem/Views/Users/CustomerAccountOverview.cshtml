@@ -12,8 +12,8 @@
     </div>
     <div class="col-sm-6 text-right margin-top-15">
         @Html.RouteLink("Update Account", "CustomerEditAccount",null, new { @class = "btn btn-gold"})
-        <a hef="#" class="btn btn-black">Delivery Addresses</a>
-        <a hef="#" class="btn btn-black">Credit Cards</a>
+        @Html.ActionLink("Delivery Addresses", "Index", "Addresses", null, new { @class = "btn btn-black" })
+        @Html.ActionLink("Credit Cards", "Index", "CreditCards", null, new { @class = "btn btn-black" })
     </div>
 </div>
 

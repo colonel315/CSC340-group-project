@@ -22,6 +22,14 @@
     background: #b94a48;
 }
 
+.btn-yellow {
+    border-color: #c09853;
+}
+
+.btn-yellow:hover {
+    background: #c09853;
+}
+
 .btn-custom {
     border-width: 2px;
     border-style: solid;
@@ -37,6 +45,11 @@
     font-size: 13px;
     -webkit-transition: all 0.5s ease;
     transition: all 0.5s ease;
+}
+
+.btn-custom.btn-sm {
+    padding: 3px 15px;
+    height: auto;
 }
 
 .btn-custom:hover {

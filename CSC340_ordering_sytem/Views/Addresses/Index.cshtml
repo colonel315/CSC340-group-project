@@ -18,7 +18,7 @@
 @{
     if (Model.Any())
     {
-        <table class="table">
+        <table class="table table-striped">
             <thead>
             <tr>
                 <th>
@@ -63,6 +63,8 @@
     }
     else
     {
-        <h3 class="text-center">You don't have any delivery addresses</h3>
+        <h3 class="text-center">You haven't saved any addresses yet.</h3>
     }
 }
+
+@Html.ActionLink("Back to account", "CustomerAccountOverview", "Users")

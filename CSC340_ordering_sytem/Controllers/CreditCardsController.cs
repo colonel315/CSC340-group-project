@@ -4,6 +4,8 @@ using System.Net;
 using System.Web.Mvc;
 using CSC340_ordering_sytem.DAL;
 using CSC340_ordering_sytem.Models;
+using CSC340_ordering_sytem.Models.Helpers;
+using CSC340_ordering_sytem.ViewModels;
 using Microsoft.AspNet.Identity;
 
 namespace CSC340_ordering_sytem.Controllers
@@ -38,8 +40,7 @@ namespace CSC340_ordering_sytem.Controllers
         // GET: CreditCards/Create
         public ActionResult Create()
         {
-            ViewBag.CustomerId = new SelectList(_db.Users, "Id", "FirstName");
-            return View();
+            return View(new CreditCardCreateViewModel());
         }
 
         // POST: CreditCards/Create
@@ -47,57 +48,29 @@ namespace CSC340_ordering_sytem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Token,CardSuffix,CustomerId")] CreditCard creditCard)
+        public ActionResult Create([Bind(Include = "Number,ExpMonth,ExpYear")] CreditCardCreateViewModel tempCard)
         {
             if (ModelState.IsValid)
             {
                 var activeUserId = int.Parse(User.Identity.GetUserId());
-                if(activeUserId != creditCard.CustomerId)
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+                var creditCard = new CreditCard()
+                {
+                    Token = CreditCardHelper.GenerateToken(),
+                    CustomerId = activeUserId,
+                    CardSuffix = tempCard.Number.Substring(tempCard.Number.Length - 4),
+                    ExpMonth = tempCard.ExpMonth,
+                    ExpYear = tempCard.ExpYear
+                };
 
                 _db.CreditCards.Add(creditCard);
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
             
-            return View(creditCard);
+            return View(tempCard);
         }
 
-        // GET: CreditCards/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            var activeUserId = int.Parse(User.Identity.GetUserId());
-            var creditCard = _db.CreditCards.Include(a => a.Customer).First(x => x.CustomerId == activeUserId);
-
-            if (creditCard == null)
-            {
-                return HttpNotFound();
-            }
-            
-            return View(creditCard);
-        }
-
-        // POST: CreditCards/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Token,CardSuffix,CustomerId")] CreditCard creditCard)
-        {
-            if (ModelState.IsValid)
-            {
-                _db.Entry(creditCard).State = EntityState.Modified;
-                _db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.CustomerId = new SelectList(_db.Users, "Id", "FirstName", creditCard.CustomerId);
-            return View(creditCard);
-        }
 
         // GET: CreditCards/Delete/5
         public ActionResult Delete(int? id)

@@ -77,14 +77,21 @@ namespace CSC340_ordering_sytem.Controllers
 
         public ActionResult UpdateItemInCart([Bind(Include = "Id,Quantity")]  CartItem updateItem)
         {
-            var item = _db.CartItems.Find(updateItem.Id);
+            var item = _db.CartItems.Where(x => x.Id == updateItem.Id).Include("MenuItem").FirstOrDefault();
             if (item == null)
             {
                 this.Flash("danger", "That item does not exist");
             }
-            item.Quantity = updateItem.Quantity;
+            
             if (ModelState.IsValid)
             {
+                if (item.Quantity < 1)
+                {
+                    this.Flash("danger", $"You must order at least 1 {item.MenuItem.Name}");
+                    return RedirectToAction("ShowCart");
+                }
+
+                item.Quantity = updateItem.Quantity;
                 _db.Entry(item).State = EntityState.Modified;
                 _db.SaveChanges();
                 this.Flash("success", "The item was successfully updated");

@@ -54,9 +54,9 @@
                                     <span class="fa fa-minus"></span>
                                 </button>
                             </span>
-                            <input type="number" id="@ViewBag.itemQtyInputId" class="form-control input-number" value="1"
+                            <input type="number" id="@ViewBag.itemQtyInputId" class="form-control input-number" value="@item.Quantity"
                                    min="1" max="10" disabled="disabled">
-                            <input type="hidden" name="Quantity" data-value="#@ViewBag.itemQtyInputId"/>
+                            <input type="hidden" name="Quantity" data-value="#@ViewBag.itemQtyInputId" value="@item.Quantity" />
                             <span class="input-group-btn">
                                 <button type="button" class="btn btn-default btn-number" data-action="increment"
                                         data-target="#@ViewBag.itemQtyInputId">
@@ -98,22 +98,24 @@
                     <h3>Carts Total</h3>
                     <table class="table table-bordered">
                         <tbody>
-                            <tr>
-                                <td>Cart Subtotal</td>
-                                <td>150 $</td>
-                            </tr>
-                            <tr>
-                                <td>Tax</td>
-                                <td>20 $</td>
-                            </tr>
-                            <tr>
-                                <td>Order Total</td>
-                                <td>170 $</td>
-                            </tr>
+                        <tr>
+                            <td>Cart Subtotal</td>
+                            <td>150 $</td>
+                        </tr>
+                        <tr>
+                            <td>Tax</td>
+                            <td>20 $</td>
+                        </tr>
+                        <tr>
+                            <td>Order Total</td>
+                            <td>170 $</td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
-                <button type="submit" class="btn  btn-black">PROCEED TO CHECKOUT</button>
+                <div class="text-center">
+                    <button type="submit" class="btn  btn-black">PROCEED TO CHECKOUT</button>
+                </div>
                 <!-- Carts total -->
             </div>
             <!--End Right side -->
