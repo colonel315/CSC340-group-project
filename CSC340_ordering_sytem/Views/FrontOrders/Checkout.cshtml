@@ -1,4 +1,5 @@
-﻿@model CSC340_ordering_sytem.ViewModels.FrontOrdersCheckoutViewModel
+﻿@using CSC340_ordering_sytem.Models
+@model CSC340_ordering_sytem.ViewModels.FrontOrdersCheckoutViewModel
 @{
     ViewBag.Title = "Delivery & Billing";
 }
@@ -18,13 +19,9 @@
             {
                 <div class="form-group">
                     <label>Use an existing card</label>
-                    <select name="ExistingCreditCardId" class="form-control">
-                        <option value="">Select</option>
-                        @foreach (var card in ViewBag.Customer.CreditCards)
-                        {
-                            <option value="@card.Id">@card.CardSuffix</option>
-                        }
-                    </select>
+                    @Html.DropDownListFor(x => x.ExistingCreditCardId, 
+                        Model.ConvertCardsToSelectMenu((ICollection<CreditCard>)ViewBag.Customer.CreditCards), 
+                        "Select Credit Card", new { @class = "form-control" })
                 </div>
 
                 <h3 class="text-center">- OR -</h3>
@@ -58,13 +55,9 @@
             {
                 <div class="form-group">
                     <label>Use an existing address</label>
-                    <select name="ExistingAddressId" class="form-control">
-                        <option value="">Select</option>
-                        @foreach (var address in ViewBag.Customer.Addresses)
-                        {
-                            <option value="@address.Id">@address.Street @address.City, @address.State @address.Zip</option>
-                        }
-                    </select>
+                    @Html.DropDownListFor(x => x.ExistingAddressId,
+                        Model.ConvertAddressesToSelectMenu((ICollection<Address>)ViewBag.Customer.Addresses),
+                        "Select Address", new { @class = "form-control" })
                 </div>
 
                 <h3 class="text-center">- OR -</h3>

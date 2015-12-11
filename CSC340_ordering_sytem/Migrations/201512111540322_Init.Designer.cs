@@ -7,13 +7,13 @@ namespace CSC340_ordering_sytem.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AddedCityToAddress : IMigrationMetadata
+    public sealed partial class Init : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddedCityToAddress));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Init));
         
         string IMigrationMetadata.Id
         {
-            get { return "201512110350295_AddedCityToAddress"; }
+            get { return "201512111540322_Init"; }
         }
         
         string IMigrationMetadata.Source

@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace CSC340_ordering_sytem.Models
 {
@@ -12,9 +11,11 @@ namespace CSC340_ordering_sytem.Models
         public string Status { get; set; }
 
         [Required]
-        public Address ShippingAddress { get; set; }
+        public int DeliveryAddressId { get; set; }
+        public Address DeliveryAddress { get; set; }
 
         [Required]
+        public int CreditCardId { get; set; }
         public CreditCard CreditCard { get; set; }
 
         [Required]

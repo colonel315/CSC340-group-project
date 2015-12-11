@@ -1,0 +1,111 @@
+﻿@model CSC340_ordering_sytem.Models.Order
+@{
+    ViewBag.Title = "Confirm Order";
+}
+
+<div class="row margin-bottom-25">
+    <div class="col-sm-6">
+        <h3>Billing Information</h3>
+        <p><b>Card:</b> ************@Model.CreditCard.CardSuffix</p>
+        <p><b>Exp. Date:</b> @Model.CreditCard.ExpMonth / @Model.CreditCard.ExpYear</p>
+        @Html.ActionLink("Change", "Checkout", "FrontOrders", null, new { @class = "btn btn-sm btn-custom btn-yellow" })
+    </div>
+    <div class="col-sm-6">
+        <h3>Delivery Address</h3>
+        <p><b>Address:</b> @Model.DeliveryAddress.Street @Model.DeliveryAddress.City, @Model.DeliveryAddress.State @Model.DeliveryAddress.Zip</p>
+        @Html.ActionLink("Change", "Checkout", "FrontOrders", null, new {@class = "btn btn-sm btn-custom btn-yellow"})
+    </div>
+</div>
+
+<!-- Cart -->
+<table class="table table-striped table-responsive table-cart">
+    <thead>
+    <tr>
+        <th style="width: 40%">Product</th>
+        <th style="width: 10%">Price</th>
+        <th style="width: 20%">Quantity</th>
+        <th style="width: 10%">Total</th>
+    </tr>
+    </thead>
+    <tbody>
+    @{
+        var quantNum = 0;
+    }
+    @foreach (var item in Model.Cart.CartItems)
+    {
+        {
+            ViewBag.itemUpdateFormId = "update-item-" + item.Id;
+            ViewBag.itemQtyInputId = "item-qty-" + item.Id;
+        }
+        <tr>
+            <td class="dark-green">
+                @if (!string.IsNullOrEmpty(item.MenuItem.Image))
+                {
+                    <img src="@Url.Content(item.MenuItem.Image)" alt="">
+                }
+                else
+                {
+                    <img src="../../Content/Assets/1.jpg" alt="">
+                }
+
+                @Html.DisplayFor(modelItem => item.MenuItem.Name)
+            </td>
+            <td>$@item.MenuItem.Price</td>
+            <td>
+                @item.Quantity
+            </td>
+            <td>
+                <span class="total">$@(item.MenuItem.Price*item.Quantity)</span>
+            </td>
+        </tr>
+        {
+            ++quantNum;
+        }
+    }
+    </tbody>
+</table>
+
+<div class="text-right">
+    @Html.ActionLink("Edit Cart", "ShowCart", "Carts", null, new { @class = "btn btn-sm btn-custom btn-yellow" })
+</div>
+
+<!-- Carts content -->
+<div class="col-md-12 carts-content">
+    <div class="row">
+        <!-- Left side -->
+        <div class="col-md-5 left-side"></div>
+        <!-- End Left side -->
+        <!-- Right side -->
+        <div class="col-md-5 col-md-offset-2 right-side">
+            <!-- Carts total -->
+            <div class="carts-total text-left margin-tb-60">
+                <h3>Carts Total</h3>
+                <table class="table table-bordered">
+                    <tbody>
+                    <tr>
+                        <td>Cart Subtotal</td>
+                        <td>$@Model.Cart.GetSubTotal()</td>
+                    </tr>
+                    <tr>
+                        <td>Tax</td>
+                        <td>$@Model.Cart.GetTax()</td>
+                    </tr>
+                    <tr>
+                        <td>Order Total</td>
+                        <td>$@Model.Cart.GetTotal()</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- Carts total -->
+            <div class="text-center">
+                @using (Html.BeginForm("ConfirmSubmit", "FrontOrders", FormMethod.Post))
+                {
+                    <input type="submit" value="Confirm Order" class="btn btn-black" />
+                }
+            </div>
+        </div>
+        <!--End Right side -->
+    </div>
+</div>
+<!--End Carts content -->

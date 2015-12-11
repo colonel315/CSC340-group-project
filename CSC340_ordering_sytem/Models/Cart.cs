@@ -18,7 +18,7 @@ namespace CSC340_ordering_sytem.Models
                 total += CartItems.Sum(item => item.Quantity * item.MenuItem.Price);
             }
 
-            return total;
+            return Math.Round(total, 2);
         }
 
         public decimal GetTotal()
@@ -29,7 +29,7 @@ namespace CSC340_ordering_sytem.Models
         public decimal GetTax()
         {
             var total = GetSubTotal();
-            return total*.06m;
+            return Math.Round(total *.06m, 2);
         }
     }
 }

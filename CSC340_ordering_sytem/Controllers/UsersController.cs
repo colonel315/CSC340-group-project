@@ -35,7 +35,7 @@ namespace CSC340_ordering_sytem.Controllers
                 .Include(x => x.Addresses)
                 .Include(i => i.Orders)
                 .Include("Orders.CreditCard")
-                .Include("Orders.ShippingAddress")
+                .Include("Orders.DeliveryAddress")
                 .FirstOrDefault();
 
             //The customer must have a valid session to access this page
