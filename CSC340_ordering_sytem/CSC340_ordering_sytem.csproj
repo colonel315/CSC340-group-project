@@ -216,10 +216,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201512111540322_Init.cs" />
-    <Compile Include="Migrations\201512111540322_Init.Designer.cs">
-      <DependentUpon>201512111540322_Init.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Cart.cs" />
@@ -376,6 +372,11 @@
     <Content Include="Views\FrontOrders\Checkout.cshtml" />
     <Content Include="Views\FrontOrders\Confirm.cshtml" />
     <Content Include="Views\FrontOrders\ThankYou.cshtml" />
+    <Content Include="Views\AdminOrders\PendingOrders.cshtml" />
+    <Content Include="Views\AdminOrders\DeliveryOrders.cshtml" />
+    <Content Include="Views\AdminOrders\TodaysCompletedOrders.cshtml" />
+    <Content Include="Views\AdminOrders\PreparingOrders.cshtml" />
+    <Content Include="Views\Shared\AdminOrdersNav.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -445,11 +446,6 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201512111540322_Init.resx">
-      <DependentUpon>201512111540322_Init.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

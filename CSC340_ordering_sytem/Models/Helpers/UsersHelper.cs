@@ -9,7 +9,7 @@ namespace CSC340_ordering_sytem.Models.Helpers
 
         public static User GetUserById(int id)
         {
-            return Db.Users.FirstOrDefault(x => x.Id == id);
+            return Db.Users.AsNoTracking().FirstOrDefault(x => x.Id == id);
         }
 
         public static bool IsUserAdmin(int id)

@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<CSC340_ordering_sytem.Models.Order>
 
 @{
-    ViewBag.Title = "All Orders";
+    ViewBag.Title = "Today's Completed Orders";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -21,7 +21,6 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Status)
                 </th>
-                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -37,10 +36,6 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.Status)
                     </td>
-                    <td class="text-right">
-                        @Html.ActionLink("View Order", "Details", new { id = item.OrderNumber }, new { @class = "btn btn-sm btn-custom btn-yellow" })
-                        @Html.ActionLink("Delete", "Delete", new { id = item.OrderNumber }, new { @class = "btn btn-sm btn-custom btn-red" })
-                    </td>
                 </tr>
             }
         </tbody>
@@ -48,5 +43,5 @@
 }
 else
 {
-    <h3 class="text-center">No orders have been submitted today</h3>
+    <h3 class="text-center">No orders have been completed today</h3>
 }

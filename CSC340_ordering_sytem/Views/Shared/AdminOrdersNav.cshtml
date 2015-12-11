@@ -1,0 +1,7 @@
+﻿<div class="margin-bottom-25 text-right">
+    @Html.ActionLink("All On-Going Orders", "Index", "AdminOrders", null, new { @class = "btn btn-black" })
+    @Html.ActionLink("Pending Orders", "PendingOrders", "AdminOrders", null, new {@class = "btn btn-gold"})
+    @Html.ActionLink("Cooking Orders", "PreparingOrders", "AdminOrders", null, new {@class = "btn btn-gold"})
+    @Html.ActionLink("Delivery Orders", "DeliveryOrders", "AdminOrders", null, new {@class = "btn btn-gold"})
+    @Html.ActionLink("Complete Orders", "TodaysCompletedOrders", "AdminOrders", null, new {@class = "btn btn-gold"})
+</div>

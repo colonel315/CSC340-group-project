@@ -7,10 +7,6 @@
 }
 <ul>
     @{
-        <li>
-            @Html.ActionLink("Home", "Index", "Home")
-        </li>
-
         if (Request.IsAuthenticated)
         {
             if (UsersHelper.IsUserAdmin(int.Parse(User.Identity.GetUserId())))
@@ -25,7 +21,13 @@
         else
         {
             <li>
+                @Html.ActionLink("Home", "Index", "Home")
+            </li>
+            <li>
                 @Html.ActionLink("Login", "Login", "Authentication")
+            </li>
+            <li>
+                @Html.ActionLink("Register", "Register", "Users")
             </li>
         }
     }

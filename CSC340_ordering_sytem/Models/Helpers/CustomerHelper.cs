@@ -17,7 +17,7 @@ namespace CSC340_ordering_sytem.Models.Helpers
             {
                 return new List<CartItem>();
             }
-	        return _db.CartItems.Where(x => x.CartId == customer.Id)
+	        return _db.CartItems.AsNoTracking().Where(x => x.CartId == customer.Id)
                         .Include("MenuItem").ToList();
         }
 

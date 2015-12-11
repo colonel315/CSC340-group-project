@@ -59,7 +59,11 @@ namespace CSC340_ordering_sytem.Controllers
                     IsPersistent = viewModel.IsPersistant
                 }, identity);
 
-                return RedirectToAction("Index", "Home");
+                if (user.Role.Equals("Customer"))
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                return RedirectToAction("Index", "AdminOrders");
             }
 
             ModelState.AddModelError(string.Empty, "Invalid email/password combination.");

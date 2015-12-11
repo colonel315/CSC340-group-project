@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<CSC340_ordering_sytem.Models.Order>
 
 @{
-    ViewBag.Title = "All Orders";
+    ViewBag.Title = "Cooking Orders";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -38,8 +38,11 @@
                         @Html.DisplayFor(modelItem => item.Status)
                     </td>
                     <td class="text-right">
-                        @Html.ActionLink("View Order", "Details", new { id = item.OrderNumber }, new { @class = "btn btn-sm btn-custom btn-yellow" })
-                        @Html.ActionLink("Delete", "Delete", new { id = item.OrderNumber }, new { @class = "btn btn-sm btn-custom btn-red" })
+                        @using (Html.BeginForm())
+                        {
+                            <input type="hidden" name="OrderNumber" value="@item.OrderNumber" />
+                            <input type="submit" value="Send to Delivery" class="btn btn-sm btn-custom btn-yellow" />
+                        }
                     </td>
                 </tr>
             }
@@ -48,5 +51,6 @@
 }
 else
 {
-    <h3 class="text-center">No orders have been submitted today</h3>
+    <h3 class="text-center">No orders are being prepared at this time</h3>
 }
+
