@@ -20,9 +20,6 @@
         </tr>
         </thead>
         <tbody>
-            @{
-                var quantNum = 0;
-            }
         @foreach (var item in Model.Cart.CartItems)
         {
             {
@@ -73,14 +70,15 @@
                 </td>
                 <td>
                     <input type="submit" class="btn btn-gold" data-action="update-item" data-target="#@ViewBag.itemUpdateFormId" value="Update"/>
-                    <a class="pull-right" href="@Url.Action("RemoveItemFromCart", "Carts")">
-                        <i class="fa fa-times"></i>
-                    </a>
+                    @using (@Html.BeginForm("RemoveItemFromCart", "Carts", FormMethod.Post, new { @class = "pull-right" }))
+                    {
+                        <button type="submit" class="clearButton dark-green">
+                            <i class="fa fa-times"></i>
+                        </button>
+                        <input type="hidden" name="Id" value="@item.Id" />
+                    }
                 </td>
             </tr>
-            {
-                ++quantNum;
-            }
         }
         </tbody>
     </table>
