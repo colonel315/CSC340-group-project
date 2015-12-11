@@ -100,21 +100,21 @@
                         <tbody>
                         <tr>
                             <td>Cart Subtotal</td>
-                            <td>150 $</td>
+                            <td>$@Model.Cart.GetSubTotal()</td>
                         </tr>
                         <tr>
                             <td>Tax</td>
-                            <td>20 $</td>
+                            <td>$@Model.Cart.GetTax()</td>
                         </tr>
                         <tr>
                             <td>Order Total</td>
-                            <td>170 $</td>
+                            <td>$@Model.Cart.GetTotal()</td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
                 <div class="text-center">
-                    <button type="submit" class="btn  btn-black">PROCEED TO CHECKOUT</button>
+                    @Html.ActionLink("Proceed to Checkout", "Checkout", "FrontOrders", null, new { @class="btn btn-black" })
                 </div>
                 <!-- Carts total -->
             </div>

@@ -10,6 +10,9 @@ namespace CSC340_ordering_sytem.ViewModels
         public string Street { get; set; }
 
         [Required]
+        public string City { get; set; }
+
+        [Required]
         [StringLength(2, ErrorMessage = "Please enter the state's two letter abbreviation.")]
         public string State { get; set; }
 

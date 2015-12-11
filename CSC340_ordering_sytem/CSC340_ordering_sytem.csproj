@@ -216,17 +216,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201512110116024_AddedExpMonthAndYearToCreditCards.cs" />
-    <Compile Include="Migrations\201512110116024_AddedExpMonthAndYearToCreditCards.Designer.cs">
-      <DependentUpon>201512110116024_AddedExpMonthAndYearToCreditCards.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201512110145543_UpdatedCreditCardFieldValidation.cs" />
-    <Compile Include="Migrations\201512110145543_UpdatedCreditCardFieldValidation.Designer.cs">
-      <DependentUpon>201512110145543_UpdatedCreditCardFieldValidation.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201512110156530_ExtendedLengthOfCreditCardToken.cs" />
-    <Compile Include="Migrations\201512110156530_ExtendedLengthOfCreditCardToken.Designer.cs">
-      <DependentUpon>201512110156530_ExtendedLengthOfCreditCardToken.cs</DependentUpon>
+    <Compile Include="Migrations\201512110350295_AddedCityToAddress.cs" />
+    <Compile Include="Migrations\201512110350295_AddedCityToAddress.Designer.cs">
+      <DependentUpon>201512110350295_AddedCityToAddress.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Address.cs" />
@@ -261,6 +253,7 @@
     <Compile Include="ViewModels\AuthenticationLoginViewModel.cs" />
     <Compile Include="ViewModels\CartItemUpdateViewModel.cs" />
     <Compile Include="ViewModels\CreditCardCreateViewModel.cs" />
+    <Compile Include="ViewModels\FrontOrdersCheckoutViewModel.cs" />
     <Compile Include="ViewModels\MenuItemSaveViewModel.cs" />
     <Compile Include="ViewModels\UserCreateViewModel.cs" />
     <Compile Include="ViewModels\UserEditViewModel.cs" />
@@ -383,6 +376,7 @@
     <Content Include="Views\AdminOrders\Details.cshtml" />
     <Content Include="Views\AdminOrders\Edit.cshtml" />
     <Content Include="Views\AdminOrders\Index.cshtml" />
+    <Content Include="Views\FrontOrders\Checkout.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -454,14 +448,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201512110116024_AddedExpMonthAndYearToCreditCards.resx">
-      <DependentUpon>201512110116024_AddedExpMonthAndYearToCreditCards.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201512110145543_UpdatedCreditCardFieldValidation.resx">
-      <DependentUpon>201512110145543_UpdatedCreditCardFieldValidation.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201512110156530_ExtendedLengthOfCreditCardToken.resx">
-      <DependentUpon>201512110156530_ExtendedLengthOfCreditCardToken.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201512110350295_AddedCityToAddress.resx">
+      <DependentUpon>201512110350295_AddedCityToAddress.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

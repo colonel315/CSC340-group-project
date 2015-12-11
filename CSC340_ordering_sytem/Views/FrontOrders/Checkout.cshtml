@@ -1,0 +1,107 @@
+﻿@model CSC340_ordering_sytem.ViewModels.FrontOrdersCheckoutViewModel
+@{
+    ViewBag.Title = "Delivery & Billing";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+
+    <div class="row">
+        <!-- Billing information -->
+        <div class="col-sm-6">
+            <h2>Billing Information</h2>
+
+            @if (ViewBag.Customer.CreditCards != null && ViewBag.Customer.CreditCards.Count > 0)
+            {
+                <div class="form-group">
+                    <label>Use an existing card</label>
+                    <select name="ExistingCreditCardId" class="form-control">
+                        <option value="">Select</option>
+                        @foreach (var card in ViewBag.Customer.CreditCards)
+                        {
+                            <option value="@card.Id">@card.CardSuffix</option>
+                        }
+                    </select>
+                </div>
+
+                <h3 class="text-center">- OR -</h3>
+            }
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Number, htmlAttributes: new {@class = "control-label"})
+                @Html.EditorFor(model => model.Number, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.Number, "", new {@class = "text-danger"})
+            </div>
+
+            <div class="form-group">
+                <label>Expiration Month</label>
+                @Html.DropDownListFor(x => x.ExpMonth, Model.GetMonths(), "Select Month", new {@class = "form-control"})
+                @Html.ValidationMessageFor(model => model.ExpMonth, "", new {@class = "text-danger"})
+            </div>
+
+            <div class="form-group">
+                <label>Expiration Year</label>
+                @Html.DropDownListFor(x => x.ExpYear, Model.GetYears(), "Select Year", new {@class = "form-control"})
+                @Html.ValidationMessageFor(model => model.ExpYear, "", new {@class = "text-danger"})
+            </div>
+
+        </div>
+
+        <!-- Delivery Information -->
+        <div class="col-sm-6">
+            <h2>Delivery Information</h2>
+
+            @if (ViewBag.Customer.Addresses != null && ViewBag.Customer.Addresses.Count > 0)
+            {
+                <div class="form-group">
+                    <label>Use an existing address</label>
+                    <select name="ExistingAddressId" class="form-control">
+                        <option value="">Select</option>
+                        @foreach (var address in ViewBag.Customer.Addresses)
+                        {
+                            <option value="@address.Id">@address.Street @address.City, @address.State @address.Zip</option>
+                        }
+                    </select>
+                </div>
+
+                <h3 class="text-center">- OR -</h3>
+            }
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Street, htmlAttributes: new {@class = "control-label"})
+                @Html.EditorFor(model => model.Street, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.Street, "", new {@class = "text-danger"})
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.City, htmlAttributes: new {@class = "control-label"})
+                @Html.EditorFor(model => model.City, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.City, "", new {@class = "text-danger"})
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.State, htmlAttributes: new {@class = "control-label"})
+                @Html.EditorFor(model => model.State, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.State, "", new {@class = "text-danger"})
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Zip, htmlAttributes: new {@class = "control-label"})
+                @Html.EditorFor(model => model.Zip, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.Zip, "", new {@class = "text-danger"})
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-6">
+            @Html.ActionLink("Back to cart", "ShowCart", "Carts")
+        </div>
+        <div class="col-xs-6 text-right">
+            <input type="submit" value="Order Now" class="btn btn-black"/>
+        </div>
+    </div>
+}

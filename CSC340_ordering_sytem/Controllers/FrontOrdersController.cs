@@ -2,18 +2,41 @@
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
+using CSC340_ordering_sytem.DAL;
 using CSC340_ordering_sytem.Models;
+using CSC340_ordering_sytem.ViewModels;
+using Microsoft.AspNet.Identity;
 
 namespace CSC340_ordering_sytem.Controllers
 {
     public class FrontOrdersController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private readonly OrderingSystemDbContext _db = new OrderingSystemDbContext();
+
+        public ActionResult Checkout()
+        {
+            var customerId = int.Parse(User.Identity.GetUserId());
+            ViewBag.Customer = _db.Users.OfType<Customer>().Where(x => x.Id == customerId)
+                                    .Include("Addresses").Include("CreditCards").FirstOrDefault();
+            return View(new FrontOrdersCheckoutViewModel());
+        }
+
+        [HttpPost]
+        public ActionResult Checkout([Bind(Include = "ExistingCreditCardId, Number, ExpMonth, ExpYear, ExistingAddressId, Street, State, Zip")] FrontOrdersCheckoutViewModel checkoutOrder)
+        {
+            return View("Checkout");
+        }
+
+
+
+
+
+
 
         // GET: FrontOrders
         public ActionResult Index()
         {
-            var order = db.Order.Include(o => o.Cart).Include(o => o.Customer);
+            var order = _db.Order.Include(o => o.Cart).Include(o => o.Customer);
             return View(order.ToList());
         }
 
@@ -24,7 +47,7 @@ namespace CSC340_ordering_sytem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Order order = db.Order.Find(id);
+            Order order = _db.Order.Find(id);
             if (order == null)
             {
                 return HttpNotFound();
@@ -35,8 +58,8 @@ namespace CSC340_ordering_sytem.Controllers
         // GET: FrontOrders/Create
         public ActionResult Create()
         {
-            ViewBag.CartId = new SelectList(db.Carts, "Id", "Id");
-            ViewBag.CustomerId = new SelectList(db.Users, "Id", "FirstName");
+            ViewBag.CartId = new SelectList(_db.Carts, "Id", "Id");
+            ViewBag.CustomerId = new SelectList(_db.Users, "Id", "FirstName");
             return View();
         }
 
@@ -49,13 +72,13 @@ namespace CSC340_ordering_sytem.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Order.Add(order);
-                db.SaveChanges();
+                _db.Order.Add(order);
+                _db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CartId = new SelectList(db.Carts, "Id", "Id", order.CartId);
-            ViewBag.CustomerId = new SelectList(db.Users, "Id", "FirstName", order.CustomerId);
+            ViewBag.CartId = new SelectList(_db.Carts, "Id", "Id", order.CartId);
+            ViewBag.CustomerId = new SelectList(_db.Users, "Id", "FirstName", order.CustomerId);
             return View(order);
         }
 
@@ -66,13 +89,13 @@ namespace CSC340_ordering_sytem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Order order = db.Order.Find(id);
+            Order order = _db.Order.Find(id);
             if (order == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CartId = new SelectList(db.Carts, "Id", "Id", order.CartId);
-            ViewBag.CustomerId = new SelectList(db.Users, "Id", "FirstName", order.CustomerId);
+            ViewBag.CartId = new SelectList(_db.Carts, "Id", "Id", order.CartId);
+            ViewBag.CustomerId = new SelectList(_db.Users, "Id", "FirstName", order.CustomerId);
             return View(order);
         }
 
@@ -85,12 +108,12 @@ namespace CSC340_ordering_sytem.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(order).State = EntityState.Modified;
-                db.SaveChanges();
+                _db.Entry(order).State = EntityState.Modified;
+                _db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CartId = new SelectList(db.Carts, "Id", "Id", order.CartId);
-            ViewBag.CustomerId = new SelectList(db.Users, "Id", "FirstName", order.CustomerId);
+            ViewBag.CartId = new SelectList(_db.Carts, "Id", "Id", order.CartId);
+            ViewBag.CustomerId = new SelectList(_db.Users, "Id", "FirstName", order.CustomerId);
             return View(order);
         }
 
@@ -101,7 +124,7 @@ namespace CSC340_ordering_sytem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Order order = db.Order.Find(id);
+            Order order = _db.Order.Find(id);
             if (order == null)
             {
                 return HttpNotFound();
@@ -114,9 +137,9 @@ namespace CSC340_ordering_sytem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            Order order = db.Order.Find(id);
-            db.Order.Remove(order);
-            db.SaveChanges();
+            Order order = _db.Order.Find(id);
+            _db.Order.Remove(order);
+            _db.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -124,7 +147,7 @@ namespace CSC340_ordering_sytem.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
         }

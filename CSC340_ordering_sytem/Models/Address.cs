@@ -16,6 +16,9 @@ namespace CSC340_ordering_sytem.Models
         public string State { get; set; }
 
         [Required]
+        public string City { get; set; }
+
+        [Required]
         [StringLength(5, ErrorMessage = "Zip code is not valid.")]
         public string Zip { get; set; }
 

@@ -50,7 +50,7 @@ namespace CSC340_ordering_sytem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Street,State,Zip,CustomerId")] AddressCreateViewModel addressViewModel)
+        public ActionResult Create([Bind(Include = "Id,Street,City,State,Zip,CustomerId")] AddressCreateViewModel addressViewModel)
         {
             if (ModelState.IsValid)
             {
@@ -58,6 +58,7 @@ namespace CSC340_ordering_sytem.Controllers
                 {
                     CustomerId = int.Parse(User.Identity.GetUserId()),
                     Street = addressViewModel.Street,
+                    City = addressViewModel.City,
                     State = addressViewModel.State,
                     Zip = addressViewModel.Zip
                 });
@@ -94,7 +95,7 @@ namespace CSC340_ordering_sytem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Street,State,Zip,CustomerId")] Address address)
+        public ActionResult Edit([Bind(Include = "Id,Street,City,State,Zip,CustomerId")] Address address)
         {
             if (ModelState.IsValid)
             {
