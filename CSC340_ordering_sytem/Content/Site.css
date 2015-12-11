@@ -56,6 +56,16 @@
     color: #fff;
 }
 
+.clearButton {
+    background: transparent;
+    border: none;
+    outline: none;
+}
+
 .max-image {
     max-width: 100%;
+}
+
+#shop_cart .cart_items a:hover {
+    color: #ffffff;
 }

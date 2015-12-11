@@ -1,14 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Data.Entity;
-using System.Data.Entity.Core;
-using System.Data.Entity.Core.Objects;
-using System.Data.Entity.Infrastructure;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using CSC340_ordering_sytem.DAL;
 using CSC340_ordering_sytem.Models;
-using CSC340_ordering_sytem.ViewModels;
 using Microsoft.AspNet.Identity;
 using MvcFlashMessages;
 
@@ -104,11 +99,28 @@ namespace CSC340_ordering_sytem.Controllers
             return RedirectToAction("ShowCart");
         }
 
-        //  TODO
-//        public ActionResult RemoveItemFromCart(int? id)
-//        {
-//            
-//        }
+        [HttpPost]
+        public ActionResult RemoveItemFromCart(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var cartItem = _db.CartItems.Find(id);
+
+            if (cartItem == null)
+            {
+                this.Flash("danger", "That item does not exist");
+                return RedirectToAction("ShowCart");
+            }
+
+            _db.CartItems.Remove(cartItem);
+            _db.SaveChanges();
+
+            this.Flash("success", "The item was successfully removed");
+            return RedirectToAction("ShowCart");
+        }
 
         // GET: Carts
         //        public ActionResult Index()

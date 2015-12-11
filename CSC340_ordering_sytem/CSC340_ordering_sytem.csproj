@@ -216,9 +216,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201512110350295_AddedCityToAddress.cs" />
-    <Compile Include="Migrations\201512110350295_AddedCityToAddress.Designer.cs">
-      <DependentUpon>201512110350295_AddedCityToAddress.cs</DependentUpon>
+    <Compile Include="Migrations\201512110427084_init.cs" />
+    <Compile Include="Migrations\201512110427084_init.Designer.cs">
+      <DependentUpon>201512110427084_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Address.cs" />
@@ -448,8 +448,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201512110350295_AddedCityToAddress.resx">
-      <DependentUpon>201512110350295_AddedCityToAddress.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201512110427084_init.resx">
+      <DependentUpon>201512110427084_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
