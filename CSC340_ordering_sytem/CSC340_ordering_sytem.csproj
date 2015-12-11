@@ -216,17 +216,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201512110116024_AddedExpMonthAndYearToCreditCards.cs" />
-    <Compile Include="Migrations\201512110116024_AddedExpMonthAndYearToCreditCards.Designer.cs">
-      <DependentUpon>201512110116024_AddedExpMonthAndYearToCreditCards.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201512110145543_UpdatedCreditCardFieldValidation.cs" />
-    <Compile Include="Migrations\201512110145543_UpdatedCreditCardFieldValidation.Designer.cs">
-      <DependentUpon>201512110145543_UpdatedCreditCardFieldValidation.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201512110156530_ExtendedLengthOfCreditCardToken.cs" />
-    <Compile Include="Migrations\201512110156530_ExtendedLengthOfCreditCardToken.Designer.cs">
-      <DependentUpon>201512110156530_ExtendedLengthOfCreditCardToken.cs</DependentUpon>
+    <Compile Include="Migrations\201512110325162_init.cs" />
+    <Compile Include="Migrations\201512110325162_init.Designer.cs">
+      <DependentUpon>201512110325162_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Address.cs" />
@@ -454,14 +446,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201512110116024_AddedExpMonthAndYearToCreditCards.resx">
-      <DependentUpon>201512110116024_AddedExpMonthAndYearToCreditCards.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201512110145543_UpdatedCreditCardFieldValidation.resx">
-      <DependentUpon>201512110145543_UpdatedCreditCardFieldValidation.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201512110156530_ExtendedLengthOfCreditCardToken.resx">
-      <DependentUpon>201512110156530_ExtendedLengthOfCreditCardToken.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201512110325162_init.resx">
+      <DependentUpon>201512110325162_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

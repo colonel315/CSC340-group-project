@@ -75,6 +75,7 @@ namespace CSC340_ordering_sytem.Controllers
             return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
 
+        [HttpPost]
         public ActionResult UpdateItemInCart([Bind(Include = "Id,Quantity")]  CartItem updateItem)
         {
             var item = _db.CartItems.Where(x => x.Id == updateItem.Id).Include("MenuItem").FirstOrDefault();
@@ -104,11 +105,28 @@ namespace CSC340_ordering_sytem.Controllers
             return RedirectToAction("ShowCart");
         }
 
-        //  TODO
-//        public ActionResult RemoveItemFromCart(int? id)
-//        {
-//            
-//        }
+        [HttpPost]
+        public ActionResult RemoveItemFromCart(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var cartItem = _db.CartItems.Find(id);
+
+            if (cartItem == null)
+            {
+                this.Flash("danger", "That item does not exist");
+                return RedirectToAction("ShowCart");
+            }
+
+            _db.CartItems.Remove(cartItem);
+            _db.SaveChanges();
+
+            this.Flash("success", "The item was successfully removed");
+            return RedirectToAction("ShowCart");
+        }
 
         // GET: Carts
         //        public ActionResult Index()
